@@ -1,0 +1,14 @@
+{
+  "extends": "./tsconfig.json",
+  "include": [
+    "src/index.ts"
+  ],
+  "compilerOptions": {
+    "noEmit": false,
+    "outDir": "./cjs",
+    "declaration": true,
+    "target": "ES5",
+    "module": "CommonJS",
+    "sourceMap": false
+  }
+}

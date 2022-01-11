@@ -1,0 +1,6 @@
+/.idea
+node_modules
+/coverage
+/cjs
+/esm
+/esnext
