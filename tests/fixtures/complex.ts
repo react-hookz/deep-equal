@@ -12,7 +12,7 @@ const skipBigIntArray = typeof BigUint64Array === 'undefined';
 
 function map(obj: Record<any, any>, Class?: any) {
   const a = new (Class || Map)();
-  // eslint-disable-next-line guard-for-in,no-restricted-syntax
+  // eslint-disable-next-line guard-for-in
   for (const key in obj) a.set(key, obj[key]);
   return a;
 }
@@ -23,7 +23,6 @@ function myMap(obj: Record<any, any>) {
 
 function set(arr: any[], Class?: any) {
   const a = new (Class || Set)();
-  // eslint-disable-next-line no-restricted-syntax
   for (const value of arr) a.add(value);
   return a;
 }

@@ -15,10 +15,8 @@ export function runSuite(
   suiteData: SuiteData
 ) {
   describe(suiteName, () => {
-    // eslint-disable-next-line no-restricted-syntax
     for (const suite of suiteData) {
       describe(suite.description, () => {
-        // eslint-disable-next-line no-restricted-syntax
         for (const test of suite.tests) {
           const fn = test.skip ? it.skip : it;
 

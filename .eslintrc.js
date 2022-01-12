@@ -12,5 +12,8 @@ module.exports = {
 
   rules: {
     'no-plusplus': 'off',
+    'no-cond-assign': 'off',
+    'no-continue': 'off',
+    'no-restricted-syntax': 'off',
   },
 };

@@ -19,7 +19,6 @@ export const compareMaps = (a: Map<any, any>, b: Map<any, any>, equal: EqualFn):
   const it = a.entries();
   let i: any;
 
-  // eslint-disable-next-line no-cond-assign
   while (!(i = it.next()).done) {
     if (!b.has(i.value[0]) || !equal(i.value[1], b.get(i.value[0]))) return false;
   }
@@ -32,7 +31,6 @@ export const compareSets = (a: Set<any>, b: Set<any>): boolean => {
   const it = a.values();
   let i: any;
 
-  // eslint-disable-next-line no-cond-assign
   while (!(i = it.next()).done) {
     if (!b.has(i.value)) return false;
   }
@@ -69,7 +67,6 @@ export const compareObjects = (
   let i;
   let len = 0;
 
-  // eslint-disable-next-line no-restricted-syntax
   for (i in a) {
     if (hasOwnProperty.call(a, i)) {
       len++;
@@ -91,7 +88,6 @@ export const compareObjectsReact = (
   let i;
   let len = 0;
 
-  // eslint-disable-next-line no-restricted-syntax
   for (i in a) {
     if (hasOwnProperty.call(a, i)) {
       len++;
@@ -99,7 +95,6 @@ export const compareObjectsReact = (
         // in React and Preact these properties contain circular references
         // .$$typeof is just reasonable marker of element
 
-        // eslint-disable-next-line no-continue
         continue;
       }
 

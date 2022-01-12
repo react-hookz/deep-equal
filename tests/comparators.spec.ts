@@ -1,5 +1,3 @@
-/* eslint-disable no-restricted-syntax */
-
 import {
   compareArrayBuffers,
   compareArrays,
