@@ -4,3 +4,4 @@ node_modules
 /cjs
 /esm
 /esnext
+/benchmark/dist

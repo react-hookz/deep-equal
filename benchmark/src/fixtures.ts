@@ -122,16 +122,15 @@ export const complex: typeof simple = [
         bat: {
           hello: new Map([['hello', 'world']]),
           world: {
-            aaa: new Map([[{ foo: /bar/ }, 'sub sub value1']]),
+            aaa: new Map([['foobar', 'sub sub value1']]),
             bbb: [1, 2, { prop2: 1, prop: 2 }, 4, 5],
           },
         },
-        quz: new Set([{ a: 1, b: 2 }]),
+
         qut: new Date(2016, 2, 10),
         qar: new Uint8Array([1, 2, 3, 4, 5]),
       },
       {
-        quz: new Set([{ a: 1, b: 2 }]),
         baz: /foo/i,
         foo: 'value1',
         bar: new Set([1, 2, 3]),
@@ -139,7 +138,7 @@ export const complex: typeof simple = [
         qut: new Date('2016/03/10'),
         bat: {
           world: {
-            aaa: new Map([[{ foo: /bar/ }, 'sub sub value1']]),
+            aaa: new Map([['foobar', 'sub sub value1']]),
             bbb: [1, 2, { prop2: 1, prop: 2 }, 4, 5],
           },
           hello: new Map([['hello', 'world']]),
@@ -157,16 +156,14 @@ export const complex: typeof simple = [
         bat: {
           hello: new Map([['hello', 'world']]),
           world: {
-            aaa: new Map([[{ foo: /bar/ }, 'sub sub value1']]),
+            aaa: new Map([['foobar', 'sub sub value1']]),
             bbb: [1, 2, { prop2: 1, prop: 2 }, 4, 5],
           },
         },
-        quz: new Set([{ a: 1, b: 2 }]),
         qut: new Date(2016, 2, 10),
         qar: new Uint8Array([1, 2, 3, 4, 5]),
       },
       {
-        quz: new Set([{ a: 1, b: 2 }]),
         baz: /foo/i,
         foo: 'value1',
         bar: new Set([1, 2, 3]),
@@ -174,7 +171,7 @@ export const complex: typeof simple = [
         qut: new Date('2016/03/10'),
         bat: {
           world: {
-            aaa: new Map([[{ foo: /bar/ }, 'sub sub value1']]),
+            aaa: new Map([['foobar', 'sub sub value1']]),
             bbb: [1, 2, { prop2: 1, prop: 2 }, 4, 8],
           },
           hello: new Map([['hello', 'world']]),
@@ -220,20 +217,20 @@ export const complex: typeof simple = [
     name: 'sets (unequal)',
     data: [new Set<any>(['foo', 'bar', 'qux']), new Set<any>(['foo', 'bax', 'qux'])],
   },
-  {
-    name: 'data views (equal)',
-    data: [
-      new DataView(new Uint16Array([1, 2, 3]).buffer),
-      new DataView(new Uint16Array([1, 2, 3]).buffer),
-    ],
-  },
-  {
-    name: 'data views (unequal)',
-    data: [
-      new DataView(new Uint16Array([1, 2, 3]).buffer),
-      new DataView(new Uint16Array([1, 3, 3]).buffer),
-    ],
-  },
+  // {
+  //   name: 'data views (equal)',
+  //   data: [
+  //     new DataView(new Uint16Array([1, 2, 3]).buffer),
+  //     new DataView(new Uint16Array([1, 2, 3]).buffer),
+  //   ],
+  // },
+  // {
+  //   name: 'data views (unequal)',
+  //   data: [
+  //     new DataView(new Uint16Array([1, 2, 3]).buffer),
+  //     new DataView(new Uint16Array([1, 3, 3]).buffer),
+  //   ],
+  // },
   {
     name: 'array buffers (equal)',
     data: [new Uint16Array([1, 2, 3]), new Uint16Array([1, 2, 3])],

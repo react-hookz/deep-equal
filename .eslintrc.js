@@ -1,7 +1,7 @@
 module.exports = {
   root: true,
 
-  ignorePatterns: ['cjs', 'esm', 'esnext', 'coverage'],
+  ignorePatterns: ['cjs', 'esm', 'esnext', 'coverage', 'benchmark/dist'],
 
   extends: ['@react-hookz/eslint-config/base', '@react-hookz/eslint-config/typescript'],
 

@@ -9,6 +9,12 @@
     "declaration": true,
     "target": "ES5",
     "module": "CommonJS",
-    "sourceMap": false
+    "sourceMap": false,
+    "plugins": [
+      {
+        "transform": "./utility/ts-transformer-js-ext.ts",
+        "after": true
+      }
+    ]
   }
 }

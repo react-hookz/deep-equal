@@ -3,7 +3,9 @@
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-    "module": "commonjs",
+    "outDir": "dist",
+    "module": "CommonJS",
+    "moduleResolution": "Node",
     "target": "es5",
     "lib": [
       "ESNext",
