@@ -112,7 +112,7 @@ This package provides 4 variants of comparator:
 
 Full benchmarks results can be found in the [`benchmark`](/benchmark) directory.
 
-To run benchmarks simply clone this repo and make yarn && yarn benchmark.
+To run benchmarks simply clone this repo and make `yarn && yarn benchmark` in repo root.
 
 ## Related projects
 
