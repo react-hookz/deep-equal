@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/react-hookz/deep-equal/compare/v1.0.0...v1.0.1) (2022-01-12)
+
+
+### Bug Fixes
+
+* proper naming and links in readme ([eb99cf1](https://github.com/react-hookz/deep-equal/commit/eb99cf1cafe2620d5474b05e5ecf3280ea5334f8))
+
 # 1.0.0 (2022-01-12)
 
 
