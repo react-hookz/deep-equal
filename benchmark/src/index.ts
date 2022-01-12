@@ -4,7 +4,7 @@ import fastDeepEqual from 'fast-deep-equal/es6/react';
 import reactFastCompare from 'react-fast-compare';
 import { run } from './run';
 import * as fixtures from './fixtures';
-// eslint-disable-next-line import/no-relative-packages
+// eslint-disable-next-line import/no-relative-packages,import/extensions
 import { isEqual, isEqualSimple } from '../..';
 
 run(fixtures.simple, {
