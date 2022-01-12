@@ -7,6 +7,7 @@ import {
   compareDates,
   compareMaps,
   compareObjects,
+  compareObjectsReact,
   compareRegexps,
   compareSets,
 } from '../src/comparators';
@@ -143,6 +144,7 @@ describe('comparators', () => {
 
   it('should correctly compare objects', () => {
     expect(compareObjects({}, {}, strictEqual)).toBe(true);
+
     expect(
       compareObjects(
         { a: 1, foo: 'bar', bax: 'qux' },
@@ -150,6 +152,7 @@ describe('comparators', () => {
         strictEqual
       )
     ).toBe(true);
+
     expect(
       compareObjects(
         { a: 1, foo: 'bar', bax: 'qux' },
@@ -161,10 +164,70 @@ describe('comparators', () => {
     expect(
       compareObjects({ a: 1, foo: 'bar', bax: 'qux' }, { a: 1, bax: 'qux', foo: 2 }, strictEqual)
     ).toBe(false);
+
     expect(
       compareObjects(
         { a: 1, foo: 'bar', bax: 'qux' },
         { a: 1, bax: 'qux', foo: 'bar', 2: 3 },
+        strictEqual
+      )
+    ).toBe(false);
+
+    expect(
+      compareObjects(
+        { a: 1, bax: 'qux', foo: 'bar', 2: 3 },
+        { a: 1, foo: 'bar', bax: 'qux' },
+        strictEqual
+      )
+    ).toBe(false);
+  });
+
+  it('should correctly compare react objects', () => {
+    expect(compareObjects({}, {}, strictEqual)).toBe(true);
+    expect(
+      compareObjectsReact(
+        { a: 1, foo: 'bar', bax: 'qux' },
+        { a: 1, foo: 'bar', bax: 'qux' },
+        strictEqual
+      )
+    ).toBe(true);
+
+    expect(
+      compareObjectsReact(
+        { a: 1, foo: 'bar', bax: 'qux' },
+        { a: 1, bax: 'qux', foo: 'bar' },
+        strictEqual
+      )
+    ).toBe(true);
+
+    expect(
+      compareObjectsReact(
+        { a: 1, foo: 'bar', bax: 'qux' },
+        { a: 1, bax: 'qux', foo: 2 },
+        strictEqual
+      )
+    ).toBe(false);
+
+    expect(
+      compareObjectsReact(
+        { a: 1, foo: 'bar', bax: 'qux' },
+        { a: 1, bax: 'qux', foo: 'bar', 2: 3 },
+        strictEqual
+      )
+    ).toBe(false);
+
+    expect(
+      compareObjectsReact(
+        { a: 1, bax: 'qux', foo: 'bar', 2: 3 },
+        { a: 1, foo: 'bar', bax: 'qux' },
+        strictEqual
+      )
+    ).toBe(false);
+
+    expect(
+      compareObjectsReact(
+        { a: 1, foo: 'bar', bax: 'qux', $$typeof: true, _owner: 1 },
+        { a: 1, bax: 'qux', foo: 'bar', $$typeof: true, _owner: 2 },
         strictEqual
       )
     ).toBe(true);

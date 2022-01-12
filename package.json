@@ -1,13 +1,35 @@
 {
   "name": "@react-hookz/deep-equal",
   "version": "0.0.0",
+  "description": "Fast deep equal comparator",
+  "keywords": [
+    "deep",
+    "deep-equal",
+    "fast",
+    "react",
+    "es6"
+  ],
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/react-hookz/web.git"
+  },
+  "bugs": {
+    "url": "https://github.com/react-hookz/web/issues"
+  },
   "publishConfig": {
     "access": "public"
   },
-  "dependencies": {
-    "typescript": "^4.5.4"
-  },
+  "files": [
+    "cjs",
+    "esm",
+    "esnext"
+  ],
+  "main": "cjs/index.js",
+  "esnext": "esnext/index.js",
+  "types": "cjs/index.d.ts",
+  "module": "esm/index.js",
+  "sideEffects": false,
   "devDependencies": {
     "@commitlint/cli": "^16.0.2",
     "@commitlint/config-conventional": "^16.0.0",
@@ -26,6 +48,7 @@
     "lint-staged": "^12.1.7",
     "semantic-release": "^18.0.1",
     "ts-jest": "^27.1.2",
+    "typescript": "^4.5.4",
     "yarn": "^1.22.17"
   },
   "scripts": {
