@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export const simple: { name: string; data: [any, any] }[] = [
   {
     name: 'mixed (equal)',
@@ -103,11 +104,11 @@ export const simple: { name: string; data: [any, any] }[] = [
   },
   {
     name: 'regexps (equal)',
-    data: [/[abc]+/, /[abc]+/],
+    data: [/[a-c]+/, /[a-c]+/],
   },
   {
     name: 'regexps (unequal)',
-    data: [/[abc]+/, /[abcd]+/],
+    data: [/[a-c]+/, /[a-d]+/],
   },
 ];
 

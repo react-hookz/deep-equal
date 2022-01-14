@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-syntax */
 export type SuiteData = {
   description: string;
   tests: {

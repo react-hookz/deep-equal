@@ -21,9 +21,9 @@ describe('comparators', () => {
   });
 
   it('should correctly compare regexps', () => {
-    expect(compareRegexps(/[abc]+/, /[abc]+/)).toBe(true);
-    expect(compareRegexps(/[abc]+/, /[abcd]+/)).toBe(false);
-    expect(compareRegexps(/[abc]+/, /[abc]+/i)).toBe(false);
+    expect(compareRegexps(/[a-c]+/, /[a-c]+/)).toBe(true);
+    expect(compareRegexps(/[a-c]+/, /[a-d]+/)).toBe(false);
+    expect(compareRegexps(/[a-c]+/, /[a-c]+/i)).toBe(false);
   });
 
   it('should correctly compare dates', () => {

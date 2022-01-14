@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any,no-cond-assign,no-restricted-syntax,no-continue */
 type EqualFn = (a: any, b: any) => boolean;
 
 export const compareDates = (a: Date, b: Date): boolean => a.getTime() === b.getTime();
