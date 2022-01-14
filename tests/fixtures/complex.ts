@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-return,no-restricted-syntax */
 // eslint-disable-next-line max-classes-per-file
 import { SuiteData } from '../runner';
 
@@ -31,6 +32,7 @@ function mySet(arr: any[]) {
   return set(arr, MySet);
 }
 
+// eslint-disable-next-line import/no-default-export
 export default [
   {
     description: 'bigint',

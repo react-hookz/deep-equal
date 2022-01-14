@@ -3,7 +3,7 @@ module.exports = {
 
   ignorePatterns: ['cjs', 'esm', 'esnext', 'coverage', 'benchmark/dist'],
 
-  extends: ['@react-hookz/eslint-config/base', '@react-hookz/eslint-config/typescript'],
+  extends: ['@react-hookz/eslint-config/typescript'],
 
   parserOptions: {
     project: './tsconfig.eslint.json',
@@ -11,9 +11,11 @@ module.exports = {
   },
 
   rules: {
-    'no-plusplus': 'off',
-    'no-cond-assign': 'off',
-    'no-continue': 'off',
-    'no-restricted-syntax': 'off',
+    '@typescript-eslint/no-use-before-define': 'off',
+    '@typescript-eslint/no-explicit-any': 'off',
+    '@typescript-eslint/no-unsafe-argument': 'off',
+    '@typescript-eslint/no-unsafe-call': 'off',
+    '@typescript-eslint/no-unsafe-member-access': 'off',
+    '@typescript-eslint/no-unsafe-assignment': 'off',
   },
 };

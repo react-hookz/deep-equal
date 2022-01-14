@@ -1,6 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies, import/no-default-export */
 import * as ts from 'typescript';
-import * as path from 'path';
+import * as path from 'node:path';
 
 function shouldUpdateImportDeclaration(
   node: ts.Node
@@ -35,7 +35,7 @@ export default function transformer(_: ts.Program): ts.TransformerFactory<ts.Sou
             node.modifiers,
             node.importClause,
             newModuleSpecifier,
-            undefined
+            node.assertClause
           );
         }
         if (ts.isExportDeclaration(node)) {
@@ -47,7 +47,7 @@ export default function transformer(_: ts.Program): ts.TransformerFactory<ts.Sou
             false,
             node.exportClause,
             newModuleSpecifier,
-            undefined
+            node.assertClause
           );
         }
       }

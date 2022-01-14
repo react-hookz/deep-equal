@@ -23,6 +23,7 @@ export function run<T>(
         outputFn(`  ${String(ev.target)}`);
       },
       onComplete: (ev: any) => {
+        // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
         outputFn(` Fastest is ${ev.currentTarget.filter('fastest').map('name')}`);
       },
     });
