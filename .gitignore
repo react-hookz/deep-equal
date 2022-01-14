@@ -5,3 +5,4 @@ node_modules
 /esm
 /esnext
 /benchmark/dist
+yarn-error.log
