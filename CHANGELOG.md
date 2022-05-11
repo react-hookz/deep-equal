@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/react-hookz/deep-equal/compare/v1.0.1...v1.0.2) (2022-05-11)
+
+
+### Bug Fixes
+
+* **tests:** update dev dependencies and add `jest-environment-jsdom` dep ([60539db](https://github.com/react-hookz/deep-equal/commit/60539dbd6e73494f6688ec554b5092311da3164e))
+
 ## [1.0.1](https://github.com/react-hookz/deep-equal/compare/v1.0.0...v1.0.1) (2022-01-12)
 
 
