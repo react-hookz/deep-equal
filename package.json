@@ -40,7 +40,7 @@
     "@semantic-release/changelog": "^6.0.1",
     "@semantic-release/git": "^10.0.1",
     "@semantic-release/github": "^8.0.4",
-    "@types/jest": "^27.5.0",
+    "@types/jest": "^27.5.1",
     "commitizen": "^4.2.4",
     "commitlint": "^16.2.4",
     "concurrently": "^7.1.0",
