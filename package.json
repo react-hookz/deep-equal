@@ -47,7 +47,7 @@
     "husky": "^8.0.1",
     "jest": "^28.1.1",
     "jest-environment-jsdom": "^28.1.1",
-    "lint-staged": "^13.0.0",
+    "lint-staged": "^13.0.1",
     "semantic-release": "^19.0.2",
     "ts-jest": "^28.0.4",
     "ttypescript": "^1.5.13",
