@@ -43,7 +43,7 @@
     "@types/jest": "^28.1.1",
     "commitizen": "^4.2.4",
     "commitlint": "^17.0.2",
-    "concurrently": "^7.2.1",
+    "concurrently": "^7.2.2",
     "husky": "^8.0.1",
     "jest": "^28.1.1",
     "jest-environment-jsdom": "^28.1.1",
