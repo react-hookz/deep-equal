@@ -55,7 +55,7 @@ import { isEqual } from "@react-hookz/deep-equal/esnext";
 
 This package provides 4 variants of comparator:
 
-- **`isEqual`** - es6+ compatible, for cases when you expect almost ant data on input.
+- **`isEqual`** - es6+ compatible, for cases when you expect almost any data on input.
 - **`isEqualReact`** - es6+ compatible but with extra checks for `React` and `Preact` objects (they
   contain circular references).
 - **`isEqualSimple`** - simplified version without support for `Map`, `Set`, `ArrayBuffer`,
