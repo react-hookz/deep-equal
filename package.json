@@ -1,6 +1,6 @@
 {
   "name": "@react-hookz/deep-equal",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Fast deep equal comparator",
   "keywords": [
     "deep",

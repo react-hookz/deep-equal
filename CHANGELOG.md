@@ -1,3 +1,10 @@
+## [1.0.3](https://github.com/react-hookz/deep-equal/compare/v1.0.2...v1.0.3) (2022-07-08)
+
+
+### Bug Fixes
+
+* **docs:** typo ([#105](https://github.com/react-hookz/deep-equal/issues/105)) ([30ec5a2](https://github.com/react-hookz/deep-equal/commit/30ec5a2b2b8ba8cad1105ce0b64cb773f63f1117))
+
 ## [1.0.2](https://github.com/react-hookz/deep-equal/compare/v1.0.1...v1.0.2) (2022-05-11)
 
 
