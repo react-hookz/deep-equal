@@ -49,7 +49,7 @@
     "jest-environment-jsdom": "^28.1.3",
     "lint-staged": "^13.0.3",
     "semantic-release": "^19.0.3",
-    "ts-jest": "^28.0.5",
+    "ts-jest": "^28.0.7",
     "ttypescript": "^1.5.13",
     "typescript": "^4.7.4",
     "yarn": "^1.22.19"
