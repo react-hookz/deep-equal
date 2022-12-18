@@ -1,3 +1,10 @@
+## [1.0.4](https://github.com/react-hookz/deep-equal/compare/v1.0.3...v1.0.4) (2022-12-18)
+
+
+### Bug Fixes
+
+* **docs:** update link to GHA actions badge ([26f2262](https://github.com/react-hookz/deep-equal/commit/26f2262aea0b55650a029cc42de87e495ebee203))
+
 ## [1.0.3](https://github.com/react-hookz/deep-equal/compare/v1.0.2...v1.0.3) (2022-07-08)
 
 
