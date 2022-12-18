@@ -5,7 +5,7 @@
 [![NPM Version](https://flat.badgen.net/npm/v/@react-hookz/deep-equal)](https://www.npmjs.com/package/@react-hookz/deep-equal)
 [![NPM Downloads](https://flat.badgen.net/npm/dm/@react-hookz/deep-equal)](https://www.npmjs.com/package/@react-hookz/deep-equal)
 [![NPM Dependents](https://flat.badgen.net/npm/dependents/@react-hookz/deep-equal)](https://www.npmjs.com/package/@react-hookz/deep-equal)
-[![Build](https://img.shields.io/github/workflow/status/react-hookz/deep-equal/CI?style=flat-square)](https://github.com/react-hookz/deep-equal/actions)
+[![Build](https://img.shields.io/github/actions/workflow/status/react-hookz/deep-equal/CI.yml?branch=master&style=flat-square)](https://github.com/react-hookz/deep-equal/actions)
 [![Coverage](https://flat.badgen.net/codecov/c/github/react-hookz/deep-equal)](https://app.codecov.io/gh/react-hookz/deep-equal)
 [![Types](https://flat.badgen.net/npm/types/@react-hookz/deep-equal)](https://www.npmjs.com/package/@react-hookz/deep-equal)
 [![Tree Shaking](https://flat.badgen.net/bundlephobia/tree-shaking/@react-hookz/deep-equal)](https://bundlephobia.com/result?p=@react-hookz/deep-equal)
