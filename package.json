@@ -31,7 +31,7 @@
   "module": "esm/index.js",
   "sideEffects": false,
   "devDependencies": {
-    "@commitlint/cli": "^17.0.2",
+    "@commitlint/cli": "^17.4.2",
     "@commitlint/config-conventional": "^17.4.0",
     "@commitlint/cz-commitlint": "^17.4.1",
     "@jamesacarr/eslint-formatter-github-actions": "^0.1.0",
