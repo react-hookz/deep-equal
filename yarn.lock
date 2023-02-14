@@ -409,13 +409,13 @@
     "@commitlint/types" "^17.4.0"
     ajv "^8.11.0"
 
-"@commitlint/cz-commitlint@^17.4.1":
-  version "17.4.1"
-  resolved "https://registry.yarnpkg.com/@commitlint/cz-commitlint/-/cz-commitlint-17.4.1.tgz#7b139054e96ec647f19612bde4af327c698a6a58"
-  integrity sha512-WsBqTZO93JtDAJYhZ95AtS7YHCU54J5pFSGhRbIHsPGY5R54h41/wi3cZP2c68KabzZLJZhyPIATFqpP88KZag==
+"@commitlint/cz-commitlint@^17.4.2":
+  version "17.4.2"
+  resolved "https://registry.yarnpkg.com/@commitlint/cz-commitlint/-/cz-commitlint-17.4.2.tgz#6d7df1b47b4f6f6daf67ceb9b2b8eb5cb02d77be"
+  integrity sha512-KNNuY6pQq5alnyJjzXyoQ7eeymRe5KXfSn/QTh6wto1p9gEBPxkrTZE2rX4S6pCpZh8jEFEm0KEqgYDb4KGLxg==
   dependencies:
     "@commitlint/ensure" "^17.4.0"
-    "@commitlint/load" "^17.4.1"
+    "@commitlint/load" "^17.4.2"
     "@commitlint/types" "^17.4.0"
     chalk "^4.1.0"
     lodash.isplainobject "^4.0.6"
@@ -464,30 +464,10 @@
     "@commitlint/rules" "^17.4.0"
     "@commitlint/types" "^17.4.0"
 
-"@commitlint/load@>6.1.1", "@commitlint/load@^17.4.0", "@commitlint/load@^17.4.1":
-  version "17.4.1"
-  resolved "https://registry.yarnpkg.com/@commitlint/load/-/load-17.4.1.tgz#e1073e0264c84b304f5ab22862217152daca5d27"
-  integrity sha512-6A7/LhIaQpL4ieciIDcVvK2d5z/UI1GBrtDaHm6sQSCL0265clB2/F7XKQNTJHXv9yG4LByT2r+QCpM4GugIfw==
-  dependencies:
-    "@commitlint/config-validator" "^17.4.0"
-    "@commitlint/execute-rule" "^17.4.0"
-    "@commitlint/resolve-extends" "^17.4.0"
-    "@commitlint/types" "^17.4.0"
-    "@types/node" "*"
-    chalk "^4.1.0"
-    cosmiconfig "^8.0.0"
-    cosmiconfig-typescript-loader "^4.0.0"
-    lodash.isplainobject "^4.0.6"
-    lodash.merge "^4.6.2"
-    lodash.uniq "^4.5.0"
-    resolve-from "^5.0.0"
-    ts-node "^10.8.1"
-    typescript "^4.6.4"
-
-"@commitlint/load@^17.4.1":
-  version "17.4.1"
-  resolved "https://registry.yarnpkg.com/@commitlint/load/-/load-17.4.1.tgz#e1073e0264c84b304f5ab22862217152daca5d27"
-  integrity sha512-6A7/LhIaQpL4ieciIDcVvK2d5z/UI1GBrtDaHm6sQSCL0265clB2/F7XKQNTJHXv9yG4LByT2r+QCpM4GugIfw==
+"@commitlint/load@>6.1.1", "@commitlint/load@^17.4.1", "@commitlint/load@^17.4.2":
+  version "17.4.2"
+  resolved "https://registry.yarnpkg.com/@commitlint/load/-/load-17.4.2.tgz#551875c3e1dce6dc0375dc9c8ad551de8ba35de4"
+  integrity sha512-Si++F85rJ9t4hw6JcOw1i2h0fdpdFQt0YKwjuK4bk9KhFjyFkRxvR3SB2dPaMs+EwWlDrDBGL+ygip1QD6gmPw==
   dependencies:
     "@commitlint/config-validator" "^17.4.0"
     "@commitlint/execute-rule" "^17.4.0"
