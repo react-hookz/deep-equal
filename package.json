@@ -42,7 +42,7 @@
     "@semantic-release/github": "^8.0.7",
     "@types/jest": "^28.1.8",
     "commitizen": "^4.3.0",
-    "commitlint": "^17.4.3",
+    "commitlint": "^17.4.4",
     "concurrently": "^7.6.0",
     "husky": "^8.0.3",
     "jest": "^28.1.3",
