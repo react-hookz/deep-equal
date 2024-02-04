@@ -1,0 +1,11 @@
+.idea
+node_modules
+coverage
+CHANGELOG.md
+src/**/*.js
+src/**/*.d.ts
+src/__tests__/fixtures
+benchmark
+!.eslintrc.cjs
+!.prettierrc.cjs
+!.github

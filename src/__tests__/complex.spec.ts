@@ -1,7 +1,7 @@
-import { runSuite } from './runner';
-import { isEqual, isEqualReact } from '../src';
-import simpleData from './fixtures/simple';
-import complexData from './fixtures/complex';
+import { isEqual, isEqualReact } from '../index.js';
+import complexData from './fixtures/complex.js';
+import simpleData from './fixtures/simple.js';
+import { runSuite } from './runner.js';
 
 runSuite(isEqual, 'isEqual (simple data)', simpleData);
 runSuite(isEqualReact, 'isEqualReact (simple data)', simpleData);

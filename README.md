@@ -8,10 +8,12 @@
 [![Build](https://img.shields.io/github/actions/workflow/status/react-hookz/deep-equal/CI.yml?branch=master&style=flat-square)](https://github.com/react-hookz/deep-equal/actions)
 [![Coverage](https://flat.badgen.net/codecov/c/github/react-hookz/deep-equal)](https://app.codecov.io/gh/react-hookz/deep-equal)
 [![Types](https://flat.badgen.net/npm/types/@react-hookz/deep-equal)](https://www.npmjs.com/package/@react-hookz/deep-equal)
-[![Tree Shaking](https://flat.badgen.net/bundlephobia/tree-shaking/@react-hookz/deep-equal)](https://bundlephobia.com/result?p=@react-hookz/deep-equal)
+[![Tree Shaking](https://badgen.net/
+bundlephobia/tree-shaking/@react-hookz/deep-equal)](https://bundlephobia.com/result?p=@react-hookz/deep-equal)
 
 × **[DISCORD](https://discord.gg/Fjwphtu65f)**
-× **[CHANGELOG](https://github.com/react-hookz/deep-equal/blob/master/CHANGELOG.md)** ×
+× **[CHANGELOG](https://github.com/react-hookz/deep-equal/blob/master/CHANGELOG.md)**
+×
 
 </div>
 
@@ -33,22 +35,13 @@ yarn add @react-hookz/deep-equal
 
 #### Importing
 
-This package provides three levels of compilation:
-
-1. **Main**, the `/cjs` folder — CommonJS modules, with ES5 lang level.
-2. **ESM**, the `/esm` folder — it is ES modules (browser compatible), with ES5 lang level.
-3. **ESNext**, the `/esnext` folder — it is ES modules (browser compatible), with ESNext lang level.
-
-So, if you need default `isEqual`, depending on your needs, you can import in three ways
-(there are actually more, but these are the three most common):
+> This package distributed with ESNext language level and ES modules system.
+> It means that depending on your browser target you might need to transpile it. Every major
+> bundler provides a way to transpile `node_modules` fully or partially.
+> Address your bundler documentation for more details.
 
 ```ts
-// in case you need cjs modules
-import { isEqual } from "@react-hookz/deep-equal";
-// in case you need esm modules
-import { isEqual } from "@react-hookz/deep-equal/esm";
-// in case you want all the recent ES features
-import { isEqual } from "@react-hookz/deep-equal/esnext";
+import { isEqual } from '@react-hookz/deep-equal';
 ```
 
 #### Variants
@@ -65,10 +58,11 @@ This package provides 4 variants of comparator:
 ## Performance
 
 > **Note:** below tests are mage against certain dataset (can be found in benchmarks), that may or
-> may not be representative for your case and your data.  
+> may not be representative for your case and your data.
 > It is better to perform benchmarks against your datasets.
 
 **simple data (non-es6+)**
+
 <pre>
 # mixed (equal)
   @react-hookz/deep-equal x 2,328,007 ops/sec ±0.33% (94 runs sampled)
@@ -94,6 +88,7 @@ This package provides 4 variants of comparator:
 </pre>
 
 **complex data (with es6+)**
+
 <pre>
 # mixed (equal)
   @react-hookz/deep-equal x 1,417,373 ops/sec ±0.54% (94 runs sampled)
