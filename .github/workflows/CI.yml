@@ -29,7 +29,7 @@ jobs:
           install-command: yarn --frozen-lockfile
 
       - name: "Lint"
-        run: yarn lint -f @jamesacarr/github-actions
+        run: yarn lint -f @react-hookz/gha
 
   build:
     name: "Build"
@@ -51,6 +51,9 @@ jobs:
 
       - name: "Build"
         run: yarn build
+
+      - name: "Tests against built package"
+        run: yarn test
 
   test:
     name: "Test"

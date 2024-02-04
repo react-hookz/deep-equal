@@ -1,21 +1,32 @@
 {
-  "extends": "../tsconfig.build.json",
-  "compilerOptions": {
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
-    "outDir": "dist",
-    "module": "CommonJS",
-    "moduleResolution": "Node",
-    "target": "es5",
-    "lib": [
-      "ESNext",
-      "DOM"
-    ]
-  },
-  "exclude": [
-    "node_modules"
-  ],
-  "include": [
-    "src/**/*"
-  ]
+	"extends": "../tsconfig.json",
+	"compilerOptions": {
+		"allowSyntheticDefaultImports": true,
+		"esModuleInterop": true,
+		"outDir": "dist",
+		"module": "NodeNext",
+		"moduleResolution": "NodeNext",
+		"target": "ESNext",
+		"lib": [
+			"ESNext",
+			"DOM"
+		],
+		"rootDir": "./src",
+		"baseUrl": ".",
+		"paths": {
+			"@react-hookz/deep-equal-local/*": [
+				"../../*"
+			]
+		}
+	},
+	"exclude": [
+		"node_modules"
+	],
+	"include": [
+		"src/**/*"
+	],
+	"ts-node": {
+		"esm": true,
+		"swc": true
+	}
 }

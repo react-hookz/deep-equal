@@ -5,6 +5,7 @@
 - RAM: 32Gb DDR4 @ 3800MHz
 
 **Nodejs: 16.13**
+
 <pre>
 # SIMPLE
 
