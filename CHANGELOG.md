@@ -1,3 +1,15 @@
+# [2.0.0](https://github.com/react-hookz/deep-equal/compare/v1.0.4...v2.0.0) (2024-02-04)
+
+
+### Features
+
+* switch to ESM ([#235](https://github.com/react-hookz/deep-equal/issues/235)) ([8b08c02](https://github.com/react-hookz/deep-equal/commit/8b08c0211d5e62411d6c2db2516a42494a15d9a1))
+
+
+### BREAKING CHANGES
+
+* package now is `type:"module"` and distributed only with ESM modules and ESNext lang level.
+
 ## [1.0.4](https://github.com/react-hookz/deep-equal/compare/v1.0.3...v1.0.4) (2022-12-18)
 
 
