@@ -110,6 +110,30 @@ To run benchmarks simply clone this repo and make `yarn && yarn benchmark` in re
 ## Contributors
 
 <!-- readme: collaborators,contributors,semantic-release-bot/-,lint-action/- -start -->
+<table>
+<tr>
+    <td align="center">
+        <a href="https://github.com/xobotyi">
+            <img src="https://avatars.githubusercontent.com/u/6178739?v=4" width="100;" alt="xobotyi"/>
+            <br />
+            <sub><b>Anton Zinovyev</b></sub>
+        </a>
+    </td>
+    <td align="center">
+        <a href="https://github.com/kylemh">
+            <img src="https://avatars.githubusercontent.com/u/9523719?v=4" width="100;" alt="kylemh"/>
+            <br />
+            <sub><b>Kyle Holmberg</b></sub>
+        </a>
+    </td>
+    <td align="center">
+        <a href="https://github.com/nichita-pasecinic">
+            <img src="https://avatars.githubusercontent.com/u/98735377?v=4" width="100;" alt="nichita-pasecinic"/>
+            <br />
+            <sub><b>Pasecinic Nichita</b></sub>
+        </a>
+    </td></tr>
+</table>
 <!-- readme: collaborators,contributors,semantic-release-bot/-,lint-action/- -end -->
 
 ## Related projects
