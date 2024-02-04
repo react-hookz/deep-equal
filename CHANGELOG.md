@@ -1,3 +1,10 @@
+## [2.0.1](https://github.com/react-hookz/deep-equal/compare/v2.0.0...v2.0.1) (2024-02-04)
+
+
+### Bug Fixes
+
+* **readme:** switch from badgen to shields.io ([ab5c388](https://github.com/react-hookz/deep-equal/commit/ab5c388fb07d0047b6d964d2af1f936f4f61a999))
+
 # [2.0.0](https://github.com/react-hookz/deep-equal/compare/v1.0.4...v2.0.0) (2024-02-04)
 
 
