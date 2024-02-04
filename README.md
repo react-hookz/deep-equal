@@ -107,6 +107,11 @@ Full benchmarks results can be found in the [`benchmark`](/benchmark) directory.
 
 To run benchmarks simply clone this repo and make `yarn && yarn benchmark` in repo root.
 
+## Contributors
+
+<!-- readme: collaborators,contributors,semantic-release-bot/-,lint-action/- -start -->
+<!-- readme: collaborators,contributors,semantic-release-bot/-,lint-action/- -end -->
+
 ## Related projects
 
 - [@react-hookz/web](https://github.com/react-hookz/web) - React hooks done right, for browser and
