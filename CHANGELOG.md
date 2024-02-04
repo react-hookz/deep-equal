@@ -1,3 +1,10 @@
+## [2.0.2](https://github.com/react-hookz/deep-equal/compare/v2.0.1...v2.0.2) (2024-02-04)
+
+
+### Bug Fixes
+
+* **readme:** add contributors list ([#236](https://github.com/react-hookz/deep-equal/issues/236)) ([36bacce](https://github.com/react-hookz/deep-equal/commit/36bacce6f0eb4d8f35f4dd6fb1626bfe299d86a0))
+
 ## [2.0.1](https://github.com/react-hookz/deep-equal/compare/v2.0.0...v2.0.1) (2024-02-04)
 
 
