@@ -1,5 +1,4 @@
 import {
-	compareArrayBuffers,
 	compareArrays,
 	compareDataViews,
 	compareDates,
@@ -11,6 +10,8 @@ import {
 } from './comparators.js';
 
 const {valueOf, toString} = Object.prototype;
+
+const strictEqual = (a: any, b: any): boolean => a === b;
 
 // eslint-disable-next-line complexity
 export const isEqual = (a: any, b: any): boolean => {
@@ -50,11 +51,7 @@ export const isEqual = (a: any, b: any): boolean => {
 		}
 
 		if (ctor === ArrayBuffer) {
-			return compareArrayBuffers(new Uint8Array(a), new Uint8Array(b));
-		}
-
-		if (ArrayBuffer.isView(a) && ArrayBuffer.isView(b)) {
-			return compareArrayBuffers(a as any, b as any);
+			return compareArrays(new Uint8Array(a), new Uint8Array(b), strictEqual);
 		}
 
 		if (a.valueOf !== valueOf) {
@@ -110,11 +107,11 @@ export const isEqualReact = (a: any, b: any): boolean => {
 		}
 
 		if (ctor === ArrayBuffer) {
-			return compareArrayBuffers(new Uint8Array(a), new Uint8Array(b));
+			return compareArrays(new Uint8Array(a), new Uint8Array(b), strictEqual);
 		}
 
 		if (ArrayBuffer.isView(a) && ArrayBuffer.isView(b)) {
-			return compareArrayBuffers(a as any, b as any);
+			return compareArrays(a as any, b as any, strictEqual);
 		}
 
 		if (a.valueOf !== valueOf) {

@@ -77,3 +77,91 @@ describe('Array comparators', () => {
 		forLoop(a, c, strictEqual);
 	}, {time: 1000});
 });
+
+/*
+   ✓ ArrayBuffer comparators (4) 18451ms
+     name                                 hz     min     max    mean     p75     p99    p995    p999     rme   samples
+   · arrayComparator equal     12,138,214.79  0.0000  0.1537  0.0001  0.0001  0.0001  0.0001  0.0002  ±0.10%  12138216   slowest
+   · arrayComparator inequal   15,715,982.43  0.0000  0.2720  0.0001  0.0001  0.0001  0.0001  0.0001  ±0.20%  15715984
+   · bufferComparator equal    12,214,531.00  0.0000  0.2237  0.0001  0.0001  0.0001  0.0001  0.0002  ±0.13%  12214531
+   · bufferComparator inequal  15,799,871.42  0.0000  0.2085  0.0001  0.0001  0.0001  0.0001  0.0001  ±0.15%  15799873   fastest
+
+	Results of the benchmarks shows that there is no measurable difference between the
+	array buffer and array comparison implementations, and there is no need in having two functions.
+ */
+describe('ArrayBuffer comparators', () => {
+	const strictEqual = (a: any, b: any): boolean => a === b;
+
+	const arrayComparator = (a: ArrayLike<any>, b: ArrayLike<any>, equal: (a: any, b: any) => boolean) => {
+		if (a.length !== b.length) {
+			return false;
+		}
+
+		// eslint-disable-next-line unicorn/no-for-loop
+		for (let i = 0; i < a.length; i++) {
+			if (!equal(a[i], b[i])) {
+				return false;
+			}
+		}
+
+		return true;
+	};
+
+	const arrayBufferComparator = (a: ArrayLike<any>, b: ArrayLike<any>): boolean => {
+		if (a.length !== b.length) {
+			return false;
+		}
+
+		// eslint-disable-next-line unicorn/no-for-loop
+		for (let i = 0; i < a.length; i++) {
+			if (a[i] !== b[i]) {
+				return false;
+			}
+		}
+
+		return true;
+	};
+
+	const bufferViewComparator = (a: ArrayBufferView, b: ArrayBufferView): boolean => {
+		if (a.byteLength !== b.byteLength) {
+			return false;
+		}
+
+		const adv = new DataView(a.buffer, a.byteOffset, a.byteLength);
+		const bdv = new DataView(b.buffer, b.byteOffset, b.byteLength);
+
+		for (let i = 0; i < a.byteLength; i++) {
+			if (adv.getInt8(i) !== bdv.getInt8(i)) {
+				return false;
+			}
+		}
+
+		return true;
+	};
+
+	const a = new Uint32Array(100).fill(2);
+	const b = new Uint32Array(100).fill(2);
+	const c = new Uint32Array(100).fill(2);
+	c[50] = 1;
+
+	bench('arrayComparator equal', () => {
+		arrayComparator(a, b, strictEqual);
+	}, {time: 1000});
+	bench('arrayComparator inequal', () => {
+		arrayComparator(a, c, strictEqual);
+	}, {time: 1000});
+
+	bench('arrayBufferComparator equal', () => {
+		arrayBufferComparator(a, b);
+	}, {time: 1000});
+	bench('arrayBufferComparator inequal', () => {
+		arrayBufferComparator(a, c);
+	}, {time: 1000});
+
+	bench('bufferViewComparator equal', () => {
+		bufferViewComparator(a, b);
+	}, {time: 1000});
+	bench('bufferViewComparator inequal', () => {
+		bufferViewComparator(a, c);
+	}, {time: 1000});
+});

@@ -5,7 +5,7 @@ export const compareDates = (a: Date, b: Date): boolean => a.getTime() === b.get
 export const compareRegexps = (a: RegExp, b: RegExp): boolean =>
 	a.source === b.source && a.flags === b.flags;
 
-export const compareArrays = (a: any[], b: any[], equal: EqualFn): boolean => {
+export const compareArrays = (a: ArrayLike<any>, b: ArrayLike<any>, equal: EqualFn): boolean => {
 	if (a.length !== b.length) {
 		return false;
 	}
@@ -13,6 +13,20 @@ export const compareArrays = (a: any[], b: any[], equal: EqualFn): boolean => {
 	// eslint-disable-next-line unicorn/no-for-loop
 	for (let i = 0; i < a.length; i++) {
 		if (!equal(a[i], b[i])) {
+			return false;
+		}
+	}
+
+	return true;
+};
+
+export const compareDataViews = (a: DataView, b: DataView): boolean => {
+	if (a.byteLength !== b.byteLength) {
+		return false;
+	}
+
+	for (let i = 0; i < a.byteLength; i++) {
+		if (a.getInt8(i) !== b.getInt8(i)) {
 			return false;
 		}
 	}
@@ -52,30 +66,6 @@ export const compareSets = (a: Set<any>, b: Set<any>): boolean => {
 	}
 
 	return true;
-};
-
-export const compareDataViews = (a: DataView, b: DataView): boolean => {
-	let l = a.byteLength;
-	if (l !== b.byteLength) {
-		return false;
-	}
-
-	// eslint-disable-next-line no-empty
-	while (l-- && a.getInt8(l) === b.getInt8(l)) {}
-
-	return l === -1;
-};
-
-export const compareArrayBuffers = (a: ArrayLike<any>, b: ArrayLike<any>): boolean => {
-	let l = a.length;
-	if (l !== b.length) {
-		return false;
-	}
-
-	// eslint-disable-next-line no-empty
-	while (l-- && a[l] === b[l]) {}
-
-	return l === -1;
 };
 
 const {hasOwnProperty} = Object.prototype;

@@ -1,5 +1,5 @@
 import {describe, expect, test} from 'vitest';
-import {compareArrays, compareDates, compareRegexps} from './comparators.js';
+import {compareArrays, compareDataViews, compareDates, compareRegexps} from './comparators.js';
 
 const strictEqual = (a: any, b: any): boolean => a === b;
 
@@ -33,6 +33,72 @@ describe('comparators', () => {
 			{name: 'inequal elements order', a: [1, '2'], b: ['2', 1], want: false},
 		])('$name', ({a, b, want}) => {
 			expect(compareArrays(a, b, strictEqual)).toBe(want);
+		});
+	});
+
+	describe('compareArrayBuffers', () => {
+		test.each<{name: string; a: ArrayLike<any>; b: ArrayLike<any>; want: boolean}>([
+			{name: 'empty buffers', a: new Uint8Array([]), b: new Uint8Array([]), want: true},
+			{name: 'equal buffers', a: new Uint8Array([1, 2]), b: new Uint8Array([1, 2]), want: true},
+			{name: 'inequal lengths', a: new Uint8Array([]), b: new Uint8Array([1]), want: false},
+			{name: 'inequal elements', a: new Uint8Array([1]), b: new Uint8Array([2]), want: false},
+			{
+				name: 'inequal elements order',
+				a: new Uint8Array([1, 2]),
+				b: new Uint8Array([2, 1]),
+				want: false,
+			},
+			{
+				name: 'inequal sizes buffers',
+				a: new Uint8Array([1, 2]),
+				b: new Uint16Array([2, 1]),
+				want: false,
+			},
+		])('$name', ({a, b, want}) => {
+			expect(compareArrays(a, b, strictEqual)).toBe(want);
+		});
+	});
+
+	describe('compareDataViews', () => {
+		test.each<{name: string; a: DataView; b: DataView; want: boolean}>([
+			{
+				name: 'empty views',
+				a: new DataView(new Uint8Array([]).buffer),
+				b: new DataView(new Uint8Array([]).buffer),
+				want: true,
+			},
+			{
+				name: 'equal views',
+				a: new DataView(new Uint8Array([2]).buffer),
+				b: new DataView(new Uint8Array([0, 2]).buffer, 1),
+				want: true,
+			},
+			{
+				name: 'inequal byte size views',
+				a: new DataView(new Uint8Array([2]).buffer),
+				b: new DataView(new Uint16Array([2]).buffer),
+				want: false,
+			},
+			{
+				name: 'inequal lengths',
+				a: new DataView(new Uint8Array([2]).buffer),
+				b: new DataView(new Uint8Array([2, 1]).buffer),
+				want: false,
+			},
+			{
+				name: 'inequal elements order',
+				a: new DataView(new Uint8Array([2, 1]).buffer),
+				b: new DataView(new Uint8Array([2, 3]).buffer),
+				want: false,
+			},
+			{
+				name: 'inequal elements',
+				a: new DataView(new Uint8Array([2, 3]).buffer),
+				b: new DataView(new Uint8Array([2, 5]).buffer),
+				want: false,
+			},
+		])('$name', ({a, b, want}) => {
+			expect(compareDataViews(a, b)).toBe(want);
 		});
 	});
 });
