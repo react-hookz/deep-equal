@@ -1,0 +1,16 @@
+{
+	"extends": "./tsconfig.json",
+	"compilerOptions": {
+		"noEmit": false,
+		"outDir": "./dist"
+	},
+	"include": [
+		"./src"
+	],
+	"exclude": [
+		"**/*.spec.ts",
+		"**/*.test.ts",
+		"**/*.benchmark.ts",
+		"**/__tests__"
+	]
+}

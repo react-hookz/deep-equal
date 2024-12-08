@@ -1,6 +1,5 @@
-/* eslint-disable @typescript-eslint/no-unsafe-return */
 
-import { type SuiteData } from '../runner.js';
+import {type SuiteData} from '../runner.js';
 
 class MyMap extends Map {}
 
@@ -14,7 +13,10 @@ const skipBigIntArray = typeof BigUint64Array === 'undefined';
 function map(object: Record<any, any>, Class?: any) {
 	const a = new (Class || Map)();
 	// eslint-disable-next-line guard-for-in
-	for (const key in object) a.set(key, object[key]);
+	for (const key in object) {
+		a.set(key, object[key]);
+	}
+
 	return a;
 }
 
@@ -24,7 +26,10 @@ function myMap(object: Record<any, any>) {
 
 function set(array: any[], Class?: any) {
 	const a = new (Class || Set)();
-	for (const value of array) a.add(value);
+	for (const value of array) {
+		a.add(value);
+	}
+
 	return a;
 }
 
@@ -70,62 +75,62 @@ export default [
 			},
 			{
 				description: 'equal maps (same key "order")',
-				value1: map({ a: 1, b: '2' }),
-				value2: map({ a: 1, b: '2' }),
+				value1: map({a: 1, b: '2'}),
+				value2: map({a: 1, b: '2'}),
 				equal: true,
 			},
 			{
 				description: 'not equal maps (same key "order" - instances of different classes)',
-				value1: map({ a: 1, b: '2' }),
-				value2: myMap({ a: 1, b: '2' }),
+				value1: map({a: 1, b: '2'}),
+				value2: myMap({a: 1, b: '2'}),
 				equal: false,
 			},
 			{
 				description: 'equal maps (different key "order")',
-				value1: map({ a: 1, b: '2' }),
-				value2: map({ b: '2', a: 1 }),
+				value1: map({a: 1, b: '2'}),
+				value2: map({b: '2', a: 1}),
 				equal: true,
 			},
 			{
 				description: 'equal maps (different key "order" - instances of the same subclass)',
-				value1: myMap({ a: 1, b: '2' }),
-				value2: myMap({ b: '2', a: 1 }),
+				value1: myMap({a: 1, b: '2'}),
+				value2: myMap({b: '2', a: 1}),
 				equal: true,
 			},
 			{
 				description: 'not equal maps (extra key)',
-				value1: map({ a: 1, b: '2' }),
-				value2: map({ a: 1, b: '2', c: [] }),
+				value1: map({a: 1, b: '2'}),
+				value2: map({a: 1, b: '2', c: []}),
 				equal: false,
 			},
 			{
 				description: 'not equal maps (different key value)',
-				value1: map({ a: 1, b: '2', c: 3 }),
-				value2: map({ a: 1, b: '2', c: 4 }),
+				value1: map({a: 1, b: '2', c: 3}),
+				value2: map({a: 1, b: '2', c: 4}),
 				equal: false,
 			},
 			{
 				description: 'not equal maps (different keys)',
-				value1: map({ a: 1, b: '2', c: 3 }),
-				value2: map({ a: 1, b: '2', d: 3 }),
+				value1: map({a: 1, b: '2', c: 3}),
+				value2: map({a: 1, b: '2', d: 3}),
 				equal: false,
 			},
 			{
 				description: 'equal maps (same sub-keys)',
-				value1: map({ a: [map({ b: 'c' })] }),
-				value2: map({ a: [map({ b: 'c' })] }),
+				value1: map({a: [map({b: 'c'})]}),
+				value2: map({a: [map({b: 'c'})]}),
 				equal: true,
 			},
 			{
 				description: 'not equal maps (different sub-key value)',
-				value1: map({ a: [map({ b: 'c' })] }),
-				value2: map({ a: [map({ b: 'd' })] }),
+				value1: map({a: [map({b: 'c'})]}),
+				value2: map({a: [map({b: 'd'})]}),
 				equal: false,
 			},
 			{
 				description: 'not equal maps (different sub-key)',
-				value1: map({ a: [map({ b: 'c' })] }),
-				value2: map({ a: [map({ c: 'c' })] }),
+				value1: map({a: [map({b: 'c'})]}),
+				value2: map({a: [map({c: 'c'})]}),
 				equal: false,
 			},
 			{
@@ -137,19 +142,19 @@ export default [
 			{
 				description: 'map with extra undefined key is not equal #1',
 				value1: map({}),
-				value2: map({ foo: undefined }),
+				value2: map({foo: undefined}),
 				equal: false,
 			},
 			{
 				description: 'map with extra undefined key is not equal #2',
-				value1: map({ foo: undefined }),
+				value1: map({foo: undefined}),
 				value2: map({}),
 				equal: false,
 			},
 			{
 				description: 'maps with extra undefined keys are not equal #3',
-				value1: map({ foo: undefined }),
-				value2: map({ bar: undefined }),
+				value1: map({foo: undefined}),
+				value2: map({bar: undefined}),
 				equal: false,
 			},
 			{
@@ -333,7 +338,7 @@ export default [
 			},
 			{
 				description: 'pseudo array and equivalent typed array are not equal',
-				value1: { '0': 1, '1': 2, length: 2, constructor: Int32Array },
+				value1: {0: 1, 1: 2, length: 2, constructor: Int32Array},
 				value2: new Int32Array([1, 2]),
 				equal: false,
 			},

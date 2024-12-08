@@ -43,8 +43,8 @@ describe('comparators', () => {
 					[1, 'a'],
 					['foo', 'bar'],
 				]),
-				strictEqual
-			)
+				strictEqual,
+			),
 		).toBe(true);
 		expect(
 			compareMaps(
@@ -56,8 +56,8 @@ describe('comparators', () => {
 					[1, 'a'],
 					['foo', 'baz'],
 				]),
-				strictEqual
-			)
+				strictEqual,
+			),
 		).toBe(false);
 		expect(
 			compareMaps(
@@ -69,8 +69,8 @@ describe('comparators', () => {
 					[1, 'a'],
 					['bux', 'bar'],
 				]),
-				strictEqual
-			)
+				strictEqual,
+			),
 		).toBe(false);
 		expect(
 			compareMaps(
@@ -83,8 +83,8 @@ describe('comparators', () => {
 					['foo', 'bar'],
 					['bux', 2],
 				]),
-				strictEqual
-			)
+				strictEqual,
+			),
 		).toBe(false);
 	});
 
@@ -100,32 +100,32 @@ describe('comparators', () => {
 		expect(
 			compareDataViews(
 				new DataView(new Uint16Array([]).buffer),
-				new DataView(new Uint16Array([]).buffer)
-			)
+				new DataView(new Uint16Array([]).buffer),
+			),
 		).toBe(true);
 		expect(
 			compareDataViews(
 				new DataView(new Uint16Array([1, 2, 3]).buffer),
-				new DataView(new Uint16Array([1, 2, 3]).buffer)
-			)
+				new DataView(new Uint16Array([1, 2, 3]).buffer),
+			),
 		).toBe(true);
 		expect(
 			compareDataViews(
 				new DataView(new Uint16Array([1, 2, 3]).buffer),
-				new DataView(new Uint16Array([1, 3, 3]).buffer)
-			)
+				new DataView(new Uint16Array([1, 3, 3]).buffer),
+			),
 		).toBe(false);
 		expect(
 			compareDataViews(
 				new DataView(new Uint16Array([1, 2, 3]).buffer),
-				new DataView(new Uint16Array([1, 2, 3, 4]).buffer)
-			)
+				new DataView(new Uint16Array([1, 2, 3, 4]).buffer),
+			),
 		).toBe(false);
 		expect(
 			compareDataViews(
 				new DataView(new Uint16Array([1, 2, 3]).buffer),
-				new DataView(new Uint16Array([1, 3, 2]).buffer)
-			)
+				new DataView(new Uint16Array([1, 3, 2]).buffer),
+			),
 		).toBe(false);
 	});
 
@@ -134,7 +134,7 @@ describe('comparators', () => {
 		expect(compareArrayBuffers(new Uint16Array([1, 2, 3]), new Uint16Array([1, 2, 3]))).toBe(true);
 		expect(compareArrayBuffers(new Uint16Array([1, 2, 3]), new Uint16Array([1, 3, 3]))).toBe(false);
 		expect(compareArrayBuffers(new Uint16Array([1, 2, 3]), new Uint16Array([1, 2, 3, 4]))).toBe(
-			false
+			false,
 		);
 		expect(compareArrayBuffers(new Uint16Array([1, 2, 3]), new Uint16Array([1, 3, 2]))).toBe(false);
 		expect(compareArrayBuffers(new Uint16Array([1, 2, 3]), new Uint8Array([1, 3, 2]))).toBe(false);
@@ -145,38 +145,38 @@ describe('comparators', () => {
 
 		expect(
 			compareObjects(
-				{ a: 1, foo: 'bar', bax: 'qux' },
-				{ a: 1, foo: 'bar', bax: 'qux' },
-				strictEqual
-			)
+				{a: 1, foo: 'bar', bax: 'qux'},
+				{a: 1, foo: 'bar', bax: 'qux'},
+				strictEqual,
+			),
 		).toBe(true);
 
 		expect(
 			compareObjects(
-				{ a: 1, foo: 'bar', bax: 'qux' },
-				{ a: 1, bax: 'qux', foo: 'bar' },
-				strictEqual
-			)
+				{a: 1, foo: 'bar', bax: 'qux'},
+				{a: 1, bax: 'qux', foo: 'bar'},
+				strictEqual,
+			),
 		).toBe(true);
 
 		expect(
-			compareObjects({ a: 1, foo: 'bar', bax: 'qux' }, { a: 1, bax: 'qux', foo: 2 }, strictEqual)
+			compareObjects({a: 1, foo: 'bar', bax: 'qux'}, {a: 1, bax: 'qux', foo: 2}, strictEqual),
 		).toBe(false);
 
 		expect(
 			compareObjects(
-				{ a: 1, foo: 'bar', bax: 'qux' },
-				{ a: 1, bax: 'qux', foo: 'bar', 2: 3 },
-				strictEqual
-			)
+				{a: 1, foo: 'bar', bax: 'qux'},
+				{a: 1, bax: 'qux', foo: 'bar', 2: 3},
+				strictEqual,
+			),
 		).toBe(false);
 
 		expect(
 			compareObjects(
-				{ a: 1, bax: 'qux', foo: 'bar', 2: 3 },
-				{ a: 1, foo: 'bar', bax: 'qux' },
-				strictEqual
-			)
+				{a: 1, bax: 'qux', foo: 'bar', 2: 3},
+				{a: 1, foo: 'bar', bax: 'qux'},
+				strictEqual,
+			),
 		).toBe(false);
 	});
 
@@ -184,50 +184,50 @@ describe('comparators', () => {
 		expect(compareObjects({}, {}, strictEqual)).toBe(true);
 		expect(
 			compareObjectsReact(
-				{ a: 1, foo: 'bar', bax: 'qux' },
-				{ a: 1, foo: 'bar', bax: 'qux' },
-				strictEqual
-			)
+				{a: 1, foo: 'bar', bax: 'qux'},
+				{a: 1, foo: 'bar', bax: 'qux'},
+				strictEqual,
+			),
 		).toBe(true);
 
 		expect(
 			compareObjectsReact(
-				{ a: 1, foo: 'bar', bax: 'qux' },
-				{ a: 1, bax: 'qux', foo: 'bar' },
-				strictEqual
-			)
+				{a: 1, foo: 'bar', bax: 'qux'},
+				{a: 1, bax: 'qux', foo: 'bar'},
+				strictEqual,
+			),
 		).toBe(true);
 
 		expect(
 			compareObjectsReact(
-				{ a: 1, foo: 'bar', bax: 'qux' },
-				{ a: 1, bax: 'qux', foo: 2 },
-				strictEqual
-			)
+				{a: 1, foo: 'bar', bax: 'qux'},
+				{a: 1, bax: 'qux', foo: 2},
+				strictEqual,
+			),
 		).toBe(false);
 
 		expect(
 			compareObjectsReact(
-				{ a: 1, foo: 'bar', bax: 'qux' },
-				{ a: 1, bax: 'qux', foo: 'bar', 2: 3 },
-				strictEqual
-			)
+				{a: 1, foo: 'bar', bax: 'qux'},
+				{a: 1, bax: 'qux', foo: 'bar', 2: 3},
+				strictEqual,
+			),
 		).toBe(false);
 
 		expect(
 			compareObjectsReact(
-				{ a: 1, bax: 'qux', foo: 'bar', 2: 3 },
-				{ a: 1, foo: 'bar', bax: 'qux' },
-				strictEqual
-			)
+				{a: 1, bax: 'qux', foo: 'bar', 2: 3},
+				{a: 1, foo: 'bar', bax: 'qux'},
+				strictEqual,
+			),
 		).toBe(false);
 
 		expect(
 			compareObjectsReact(
-				{ a: 1, foo: 'bar', bax: 'qux', $$typeof: true, _owner: 1 },
-				{ a: 1, bax: 'qux', foo: 'bar', $$typeof: true, _owner: 2 },
-				strictEqual
-			)
+				{a: 1, foo: 'bar', bax: 'qux', $$typeof: true, _owner: 1},
+				{a: 1, bax: 'qux', foo: 'bar', $$typeof: true, _owner: 2},
+				strictEqual,
+			),
 		).toBe(true);
 	});
 });

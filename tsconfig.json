@@ -1,29 +1,17 @@
 {
 	"compilerOptions": {
+		"noEmit": true,
+		"declaration": true,
 		"target": "ESNext",
-		"jsx": "react-jsx",
 		"lib": [
-			"ESNext",
-			"DOM"
+			"ESNext"
 		],
 		"module": "NodeNext",
 		"moduleResolution": "NodeNext",
-		"declaration": true,
-		"removeComments": true,
-		"newLine": "lf",
+		"noImplicitAny": true,
+		"esModuleInterop": true,
 		"forceConsistentCasingInFileNames": true,
 		"strict": true,
-		"skipLibCheck": true,
-		"rootDir": "./src"
-	},
-	"include": [
-		"src/*.ts"
-	],
-	"exclude": [
-		"src/__tests__/**"
-	],
-	"ts-node": {
-		"esm": true,
-		"swc": true
+		"skipLibCheck": true
 	}
 }
