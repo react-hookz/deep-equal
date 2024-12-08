@@ -39,11 +39,8 @@ export const compareMaps = (a: Map<any, any>, b: Map<any, any>, equal: EqualFn):
 		return false;
 	}
 
-	const it = a.entries();
-	let i: any;
-
-	while (!(i = it.next()).done) {
-		if (!b.has(i.value[0]) || !equal(i.value[1], b.get(i.value[0]))) {
+	for (const [k, v] of a) {
+		if (!b.has(k) || !equal(v, b.get(k))) {
 			return false;
 		}
 	}
@@ -51,16 +48,15 @@ export const compareMaps = (a: Map<any, any>, b: Map<any, any>, equal: EqualFn):
 	return true;
 };
 
-export const compareSets = (a: Set<any>, b: Set<any>): boolean => {
+export const compareSets = (a: Set<any>, b: Set<any>, equal: EqualFn): boolean => {
 	if (a.size !== b.size) {
 		return false;
 	}
 
-	const it = a.values();
-	let i: any;
+	const iterB = b.values();
 
-	while (!(i = it.next()).done) {
-		if (!b.has(i.value)) {
+	for (const i of a) {
+		if (!equal(i, iterB.next().value)) {
 			return false;
 		}
 	}

@@ -1,5 +1,11 @@
 import {describe, expect, test} from 'vitest';
-import {compareArrays, compareDataViews, compareDates, compareRegexps} from './comparators.js';
+import {
+	compareArrays,
+	compareDataViews,
+	compareDates, compareMaps,
+	compareRegexps,
+	compareSets,
+} from './comparators.js';
 
 const strictEqual = (a: any, b: any): boolean => a === b;
 
@@ -99,6 +105,31 @@ describe('comparators', () => {
 			},
 		])('$name', ({a, b, want}) => {
 			expect(compareDataViews(a, b)).toBe(want);
+		});
+	});
+
+	describe('compareSets', () => {
+		test.each<{name: string; a: Set<any>; b: Set<any>; want: boolean}>([
+			{name: 'empty sets', a: new Set(), b: new Set(), want: true},
+			{name: 'equal sets', a: new Set([1, 2]), b: new Set([1, 2]), want: true},
+			{name: 'wrong order', a: new Set([2, 1]), b: new Set([1, 2]), want: false},
+			{name: 'inequal sizes', a: new Set([1]), b: new Set([1, 2]), want: false},
+			{name: 'inequal elements', a: new Set([1]), b: new Set([2]), want: false},
+		])('$name', ({a, b, want}) => {
+			expect(compareSets(a, b, strictEqual)).toBe(want);
+		});
+	});
+
+	describe('compareMaps', () => {
+		test.each<{name: string; a: Map<any, any>; b: Map<any, any>; want: boolean}>([
+			{name: 'empty maps', a: new Map(), b: new Map(), want: true},
+			{name: 'equal maps', a: new Map([[1, 1], [2, 2]]), b: new Map([[1, 1], [2, 2]]), want: true},
+			{name: 'equal maps, wrong order', a: new Map([[1, 1], [2, 2]]), b: new Map([[2, 2], [1, 1]]), want: true},
+			{name: 'inequal sizes', a: new Map([[1, 2]]), b: new Map([[1, 2], [3, 4]]), want: false},
+			{name: 'inequal keys', a: new Map([[1, 2]]), b: new Map([[2, 2]]), want: false},
+			{name: 'inequal values', a: new Map([[1, 2]]), b: new Map([[1, 3]]), want: false},
+		])('$name', ({a, b, want}) => {
+			expect(compareMaps(a, b, strictEqual)).toBe(want);
 		});
 	});
 });
