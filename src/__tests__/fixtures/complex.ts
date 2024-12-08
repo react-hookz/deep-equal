@@ -1,4 +1,3 @@
-
 import {type SuiteData} from '../runner.js';
 
 class MyMap extends Map {}

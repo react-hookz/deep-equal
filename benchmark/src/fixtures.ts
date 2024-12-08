@@ -1,4 +1,4 @@
-export const simple: Array<{ name: string; data: [any, any] }> = [
+export const simple: Array<{name: string; data: [any, any]}> = [
 	{
 		name: 'mixed (equal)',
 		data: [
@@ -10,7 +10,7 @@ export const simple: Array<{ name: string; data: [any, any] }> = [
 					subProp1: 'sub value1',
 					subProp2: {
 						subSubProp1: 'sub sub value1',
-						subSubProp2: [1, 2, { prop2: 1, prop: 2 }, 4, 5],
+						subSubProp2: [1, 2, {prop2: 1, prop: 2}, 4, 5],
 					},
 				},
 				prop5: 1000,
@@ -25,7 +25,7 @@ export const simple: Array<{ name: string; data: [any, any] }> = [
 				prop4: {
 					subProp2: {
 						subSubProp1: 'sub sub value1',
-						subSubProp2: [1, 2, { prop2: 1, prop: 2 }, 4, 5],
+						subSubProp2: [1, 2, {prop2: 1, prop: 2}, 4, 5],
 					},
 					subProp1: 'sub value1',
 				},
@@ -43,7 +43,7 @@ export const simple: Array<{ name: string; data: [any, any] }> = [
 					subProp1: 'sub value1',
 					subProp2: {
 						subSubProp1: 'sub sub value1',
-						subSubProp2: [1, 2, { prop2: 1, prop: 2 }, 4, 5],
+						subSubProp2: [1, 2, {prop2: 1, prop: 2}, 4, 5],
 					},
 				},
 				prop5: 1000,
@@ -58,7 +58,7 @@ export const simple: Array<{ name: string; data: [any, any] }> = [
 				prop4: {
 					subProp2: {
 						subSubProp1: 'sub sub value1',
-						subSubProp2: [1, 2, { prop2: 1, prop: 4 }, 4, 5],
+						subSubProp2: [1, 2, {prop2: 1, prop: 4}, 4, 5],
 					},
 					subProp1: 'sub value1',
 				},
@@ -82,15 +82,15 @@ export const simple: Array<{ name: string; data: [any, any] }> = [
 	{
 		name: 'objects (equal)',
 		data: [
-			{ a: 1, foo: 'bar', bax: 'qux' },
-			{ a: 1, bax: 'qux', foo: 'bar' },
+			{a: 1, foo: 'bar', bax: 'qux'},
+			{a: 1, bax: 'qux', foo: 'bar'},
 		],
 	},
 	{
 		name: 'objects (unequal)',
 		data: [
-			{ a: 1, foo: 'bar', bax: 'qux' },
-			{ a: 1, bax: 'qux', foo: 2 },
+			{a: 1, foo: 'bar', bax: 'qux'},
+			{a: 1, bax: 'qux', foo: 2},
 		],
 	},
 	{
@@ -123,7 +123,7 @@ export const complex: typeof simple = [
 					hello: new Map([['hello', 'world']]),
 					world: {
 						aaa: new Map([['foobar', 'sub sub value1']]),
-						bbb: [1, 2, { prop2: 1, prop: 2 }, 4, 5],
+						bbb: [1, 2, {prop2: 1, prop: 2}, 4, 5],
 					},
 				},
 
@@ -139,7 +139,7 @@ export const complex: typeof simple = [
 				bat: {
 					world: {
 						aaa: new Map([['foobar', 'sub sub value1']]),
-						bbb: [1, 2, { prop2: 1, prop: 2 }, 4, 5],
+						bbb: [1, 2, {prop2: 1, prop: 2}, 4, 5],
 					},
 					hello: new Map([['hello', 'world']]),
 				},
@@ -157,7 +157,7 @@ export const complex: typeof simple = [
 					hello: new Map([['hello', 'world']]),
 					world: {
 						aaa: new Map([['foobar', 'sub sub value1']]),
-						bbb: [1, 2, { prop2: 1, prop: 2 }, 4, 5],
+						bbb: [1, 2, {prop2: 1, prop: 2}, 4, 5],
 					},
 				},
 				qut: new Date(2016, 2, 10),
@@ -172,7 +172,7 @@ export const complex: typeof simple = [
 				bat: {
 					world: {
 						aaa: new Map([['foobar', 'sub sub value1']]),
-						bbb: [1, 2, { prop2: 1, prop: 2 }, 4, 8],
+						bbb: [1, 2, {prop2: 1, prop: 2}, 4, 8],
 					},
 					hello: new Map([['hello', 'world']]),
 				},

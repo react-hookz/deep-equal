@@ -6,14 +6,18 @@ export const compareRegexps = (a: RegExp, b: RegExp): boolean =>
 	a.source === b.source && a.flags === b.flags;
 
 export const compareArrays = (a: any[], b: any[], equal: EqualFn): boolean => {
-	let l = a.length;
-	if (l !== b.length) {
+	if (a.length !== b.length) {
 		return false;
 	}
 
-	while (l-- && equal(a[l], b[l])) {}
+	// eslint-disable-next-line unicorn/no-for-loop
+	for (let i = 0; i < a.length; i++) {
+		if (!equal(a[i], b[i])) {
+			return false;
+		}
+	}
 
-	return l === -1;
+	return true;
 };
 
 export const compareMaps = (a: Map<any, any>, b: Map<any, any>, equal: EqualFn): boolean => {
@@ -56,6 +60,7 @@ export const compareDataViews = (a: DataView, b: DataView): boolean => {
 		return false;
 	}
 
+	// eslint-disable-next-line no-empty
 	while (l-- && a.getInt8(l) === b.getInt8(l)) {}
 
 	return l === -1;
@@ -67,6 +72,7 @@ export const compareArrayBuffers = (a: ArrayLike<any>, b: ArrayLike<any>): boole
 		return false;
 	}
 
+	// eslint-disable-next-line no-empty
 	while (l-- && a[l] === b[l]) {}
 
 	return l === -1;

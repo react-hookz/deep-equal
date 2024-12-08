@@ -1,17 +1,17 @@
 import benchmark from 'benchmark';
 
 const outputFn =
-	typeof document === 'undefined'
-		? console.log
-		: (text: string) => {
+	typeof document === 'undefined' ?
+		console.log :
+			(text: string) => {
 				queueMicrotask(() => {
 					document.body.innerHTML += `${text.replace('\n', '<br/>')}<br/>`;
 				});
 			};
 
 export function run<T>(
-	testData: Array<{ name: string; data: T }>,
-	libraries: Record<string, (data: T) => void>
+	testData: Array<{name: string; data: T}>,
+	libraries: Record<string, (data: T) => void>,
 ) {
 	for (const test of testData) {
 		const suite = new benchmark.Suite(test.name, {
