@@ -9,103 +9,100 @@
 ![Codecov](https://img.shields.io/codecov/c/github/react-hookz/deep-equal?style=flat-square)
 ![NPM Type Definitions](https://img.shields.io/npm/types/%40react-hookz%2Fdeep-equal?style=flat-square)
 
-× **[DISCORD](https://discord.gg/Fjwphtu65f)**
-× **[CHANGELOG](https://github.com/react-hookz/deep-equal/blob/master/CHANGELOG.md)**
-×
+× **[DISCORD](https://discord.gg/Fjwphtu65f)** ×
 
 </div>
 
 ---
 
-Yet fastest deep comparator with ES6+ support.
+**The fastest deep comparator with full ES6+ support.**
 
-## Install
+---
 
-This one is pretty simple, everyone knows what to do:
+## Features 🚀
 
-```shell
-npm i @react-hookz/deep-equal
+- ✅ Handles ES6+ structures like `Map`, `Set`, `TypedArray`, `DataView`, and `ArrayBuffer`.
+- ✅ Supports `Date`, `RegExp`, and `NaN`.
+- ✅ Safe handling of React and Preact objects (no stack overflow).
+- ✅ Works seamlessly with objects created via `Object.create(null)`.
+- ⚠️ **Circular reference handling**:
+	- **Supported**: React and Preact objects.
+	- **Not supported**: Other objects (causes stack overflow).
+
+---
+
+## Installation 📦
+
+It's as simple as:
+
+```bash
+npm install @react-hookz/deep-equal
 # or
 yarn add @react-hookz/deep-equal
 ```
 
-## Usage
+---
 
-#### Importing
+## Usage 💡
 
-> This package distributed with ESNext language level and ES modules system.
-> It means that depending on your browser target you might need to transpile it. Every major
-> bundler provides a way to transpile `node_modules` fully or partially.
-> Address your bundler documentation for more details.
+### Importing
 
-```ts
+This package is distributed using the ESNext language level and ES module system. Depending on your target environment, you might need to transpile the package. Check your bundler's documentation for instructions on transpiling `node_modules`.
+
+```typescript
 import { isEqual } from '@react-hookz/deep-equal';
+
+isEqual({ a: 1 }, { a: 1 }); // true
 ```
 
-#### Variants
+---
 
-This package provides 4 variants of comparator:
+## Performance ⚡
 
-- **`isEqual`** - es6+ compatible, for cases when you expect almost any data on input.
-- **`isEqualReact`** - es6+ compatible but with extra checks for `React` and `Preact` objects (they
-  contain circular references).
-- **`isEqualSimple`** - simplified version without support for `Map`, `Set`, `ArrayBuffer`,
-  `TypedArray` and `DataView`.
-- **`isEqualSimpleReact`** - same as `isEqualSimple` but with checks for `React` and `Preact`
+**Note**: Benchmarks were conducted on specific datasets (available in the `benchmarks` directory). Your results may vary depending on your data and use case. Running benchmarks on your dataset is recommended.
 
-## Performance
-
-> **Note:** below tests are mage against certain dataset (can be found in benchmarks), that may or
-> may not be representative for your case and your data.
-> It is better to perform benchmarks against your datasets.
-
-**simple data (non-es6+)**
+### Simple Data (non-ES6+)
 
 <pre>
-# mixed (equal)
-  @react-hookz/deep-equal x 2,328,007 ops/sec ±0.33% (94 runs sampled)
-  @react-hookz/deep-equal (react) x 2,248,935 ops/sec ±1.05% (92 runs sampled)
-  @react-hookz/deep-equal (simple) x 2,502,281 ops/sec ±0.39% (97 runs sampled)
-  @react-hookz/deep-equal (simple react) x 2,292,288 ops/sec ±0.91% (93 runs sampled)
-  dequal x 1,884,722 ops/sec ±0.57% (92 runs sampled)
-  dequal (lite) x 1,875,235 ops/sec ±0.32% (95 runs sampled)
-  fast-deep-equal x 1,732,963 ops/sec ±0.66% (94 runs sampled)
-  react-fast-compare x 1,640,019 ops/sec ±0.22% (96 runs sampled)
- Fastest is @react-hookz/deep-equal (simple)
-
-# mixed (unequal)
-  @react-hookz/deep-equal x 3,333,499 ops/sec ±0.54% (91 runs sampled)
-  @react-hookz/deep-equal (react) x 3,175,146 ops/sec ±0.59% (94 runs sampled)
-  @react-hookz/deep-equal (simple) x 3,236,086 ops/sec ±0.37% (92 runs sampled)
-  @react-hookz/deep-equal (simple react) x 3,187,855 ops/sec ±0.48% (96 runs sampled)
-  dequal x 1,110,380 ops/sec ±1.26% (89 runs sampled)
-  dequal (lite) x 1,135,251 ops/sec ±1.01% (94 runs sampled)
-  fast-deep-equal x 2,238,446 ops/sec ±0.50% (97 runs sampled)
-  react-fast-compare x 2,221,893 ops/sec ±0.20% (93 runs sampled)
- Fastest is @react-hookz/deep-equal
+	 name                               hz     min     max    mean     p75     p99    p995    p999     rme  samples
+ · @react-hookz/deep-equal  1,780,770.64  0.0005  0.7278  0.0006  0.0006  0.0010  0.0011  0.0013  ±0.18%  1780771   fastest
+ · react-fast-compare       1,690,244.66  0.0005  3.2804  0.0006  0.0006  0.0010  0.0012  0.0013  ±0.65%  1690245
+ · fast-deep-equal          1,663,437.00  0.0005  3.5417  0.0006  0.0006  0.0010  0.0011  0.0012  ±0.70%  1663438   slowest
+ · dequal                   1,693,113.15  0.0005  3.2976  0.0006  0.0006  0.0007  0.0010  0.0012  ±0.65%  1693114
 </pre>
 
-**complex data (with es6+)**
+### Complex Data (ES6+)
 
 <pre>
-# mixed (equal)
-  @react-hookz/deep-equal x 1,417,373 ops/sec ±0.54% (94 runs sampled)
-  @react-hookz/deep-equal (react) x 1,350,950 ops/sec ±0.39% (89 runs sampled)
-  dequal x 714,145 ops/sec ±0.43% (94 runs sampled)
-  fast-deep-equal x 1,066,887 ops/sec ±0.20% (98 runs sampled)
- Fastest is @react-hookz/deep-equal
-
-# mixed (unequal)
-  @react-hookz/deep-equal x 2,096,641 ops/sec ±0.23% (98 runs sampled)
-  @react-hookz/deep-equal (react) x 2,003,117 ops/sec ±0.56% (95 runs sampled)
-  dequal x 570,606 ops/sec ±0.78% (93 runs sampled)
-  fast-deep-equal x 2,149,295 ops/sec ±2.91% (80 runs sampled)
- Fastest is @react-hookz/deep-equal,fast-deep-equal
+	 name                               hz     min     max    mean     p75     p99    p995    p999     rme  samples
+ · @react-hookz/deep-equal  1,725,589.83  0.0005  0.2565  0.0006  0.0006  0.0009  0.0010  0.0012  ±0.20%  1725590   fastest
+ · react-fast-compare       1,406,227.02  0.0006  0.1635  0.0007  0.0007  0.0011  0.0014  0.0016  ±0.21%  1406228
+ · fast-deep-equal          1,553,848.07  0.0005  2.7540  0.0006  0.0007  0.0008  0.0011  0.0013  ±0.57%  1553849
+ · dequal                   1,026,213.59  0.0008  0.1810  0.0010  0.0010  0.0011  0.0012  0.0019  ±0.16%  1026214   slowest
 </pre>
 
-Full benchmarks results can be found in the [`benchmark`](/benchmark) directory.
+---
 
-To run benchmarks simply clone this repo and make `yarn && yarn benchmark` in repo root.
+## Run Benchmarks Locally 🛠️
+
+To run the benchmarks on your machine:
+
+1. Clone the repository:
+	```bash
+	git clone https://github.com/react-hookz/deep-equal
+	cd deep-equal
+	```
+2. Install dependencies:
+	```bash
+	corepack enable
+	yarn
+	```
+3. Run benchmarks:
+	```bash
+	yarn benchmark
+	```
+
+---
 
 ## Contributors
 
@@ -139,4 +136,4 @@ To run benchmarks simply clone this repo and make `yarn && yarn benchmark` in re
 ## Related projects
 
 - [@react-hookz/web](https://github.com/react-hookz/web) - React hooks done right, for browser and
-  SSR.
+	SSR.

@@ -19,12 +19,12 @@ function runBenchmarks(suites: fixtures.BenchmarkSuite[], functions: Record<stri
 	}
 }
 
-// runBenchmarks(fixtures.simple, {
-// 	'@react-hookz/deep-equal': isEqual,
-// 	'react-fast-compare': reactFastCompare,
-// 	'fast-deep-equal': fastDeepEqual,
-// 	dequal,
-// });
+runBenchmarks(fixtures.simple, {
+	'@react-hookz/deep-equal': isEqual,
+	'react-fast-compare': reactFastCompare,
+	'fast-deep-equal': fastDeepEqual,
+	dequal,
+});
 
 runBenchmarks(fixtures.complex, {
 	'@react-hookz/deep-equal': isEqual,

@@ -38,3 +38,26 @@ it('should not throw on nested react elements with circular references #264', ()
 		isEqual(propsPrevious, propsNext);
 	}).not.toThrow();
 });
+
+it('should properly handle null-prototype objects', () => {
+	const a = Object.create(null);
+	const b = Object.create(null);
+	const c: any = {};
+
+	a.foo = 'bar';
+	b.foo = 'bar';
+	c.foo = 'bar';
+
+	expect(isEqual(a, b)).toBe(true);
+	expect(isEqual(a, c)).toBe(false); // c has a prototype
+
+	b.baz = 'qux';
+
+	expect(isEqual(a, b)).toBe(false);
+});
+
+it('should properly handle NaN', () => {
+	expect(isEqual(Number.NaN, Number.NaN)).toBe(true);
+	expect(isEqual(Number.NaN, 0)).toBe(false);
+	expect(isEqual(0, Number.NaN)).toBe(false);
+});
