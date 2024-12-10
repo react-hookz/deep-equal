@@ -1,4 +1,6 @@
-export const simple: Array<{name: string; data: [any, any]}> = [
+export type BenchmarkSuite = {name: string; data: [any, any]};
+
+export const simple: BenchmarkSuite[] = [
 	{
 		name: 'mixed (equal)',
 		data: [
@@ -111,7 +113,7 @@ export const simple: Array<{name: string; data: [any, any]}> = [
 	},
 ];
 
-export const complex: typeof simple = [
+export const complex: BenchmarkSuite[] = [
 	{
 		name: 'mixed (equal)',
 		data: [
@@ -217,20 +219,20 @@ export const complex: typeof simple = [
 		name: 'sets (unequal)',
 		data: [new Set<any>(['foo', 'bar', 'qux']), new Set<any>(['foo', 'bax', 'qux'])],
 	},
-	// {
-	//   name: 'data views (equal)',
-	//   data: [
-	//     new DataView(new Uint16Array([1, 2, 3]).buffer),
-	//     new DataView(new Uint16Array([1, 2, 3]).buffer),
-	//   ],
-	// },
-	// {
-	//   name: 'data views (unequal)',
-	//   data: [
-	//     new DataView(new Uint16Array([1, 2, 3]).buffer),
-	//     new DataView(new Uint16Array([1, 3, 3]).buffer),
-	//   ],
-	// },
+	{
+		name: 'data views (equal)',
+		data: [
+			new DataView(new Uint16Array([1, 2, 3]).buffer),
+			new DataView(new Uint16Array([1, 2, 3]).buffer),
+		],
+	},
+	{
+		name: 'data views (unequal)',
+		data: [
+			new DataView(new Uint16Array([1, 2, 3]).buffer),
+			new DataView(new Uint16Array([1, 3, 3]).buffer),
+		],
+	},
 	{
 		name: 'array buffers (equal)',
 		data: [new Uint16Array([1, 2, 3]), new Uint16Array([1, 2, 3])],

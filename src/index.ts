@@ -1,4 +1,5 @@
 import {
+	compareArrayBuffers,
 	compareArrays,
 	compareDataViews,
 	compareDates,
@@ -10,8 +11,6 @@ import {
 } from './comparators.js';
 
 const {valueOf, toString} = Object.prototype;
-
-const strictEqual = (a: any, b: any): boolean => a === b;
 
 // eslint-disable-next-line complexity
 export const isEqual = (a: any, b: any): boolean => {
@@ -51,7 +50,11 @@ export const isEqual = (a: any, b: any): boolean => {
 		}
 
 		if (ctor === ArrayBuffer) {
-			return compareArrays(new Uint8Array(a), new Uint8Array(b), strictEqual);
+			return compareArrayBuffers(new Uint8Array(a), new Uint8Array(b));
+		}
+
+		if (ArrayBuffer.isView(a) && ArrayBuffer.isView(b)) {
+			return compareArrayBuffers(a as any, b as any);
 		}
 
 		if (a.valueOf !== valueOf) {
@@ -83,7 +86,7 @@ export const isEqualReact = (a: any, b: any): boolean => {
 		}
 
 		if (ctor === Array) {
-			return compareArrays(a, b, isEqual);
+			return compareArrays(a, b, isEqualReact);
 		}
 
 		if (ctor === Date) {
@@ -95,7 +98,7 @@ export const isEqualReact = (a: any, b: any): boolean => {
 		}
 
 		if (ctor === Map && a instanceof Map && b instanceof Map) {
-			return compareMaps(a, b, isEqual);
+			return compareMaps(a, b, isEqualReact);
 		}
 
 		if (ctor === Set && a instanceof Set && b instanceof Set) {
@@ -107,11 +110,11 @@ export const isEqualReact = (a: any, b: any): boolean => {
 		}
 
 		if (ctor === ArrayBuffer) {
-			return compareArrays(new Uint8Array(a), new Uint8Array(b), strictEqual);
+			return compareArrayBuffers(new Uint8Array(a), new Uint8Array(b));
 		}
 
 		if (ArrayBuffer.isView(a) && ArrayBuffer.isView(b)) {
-			return compareArrays(a as any, b as any, strictEqual);
+			return compareArrayBuffers(a as any, b as any);
 		}
 
 		if (a.valueOf !== valueOf) {
@@ -122,7 +125,7 @@ export const isEqualReact = (a: any, b: any): boolean => {
 			return a.toString() === b.toString();
 		}
 
-		return compareObjectsReact(a, b, isEqual);
+		return compareObjectsReact(a, b, isEqualReact);
 	}
 
 	// eslint-disable-next-line no-self-compare
@@ -142,7 +145,7 @@ export const isEqualSimple = (a: any, b: any): boolean => {
 		}
 
 		if (ctor === Array) {
-			return compareArrays(a, b, isEqual);
+			return compareArrays(a, b, isEqualSimple);
 		}
 
 		if (ctor === Date) {
@@ -161,7 +164,7 @@ export const isEqualSimple = (a: any, b: any): boolean => {
 			return a.toString() === b.toString();
 		}
 
-		return compareObjects(a, b, isEqual);
+		return compareObjects(a, b, isEqualSimple);
 	}
 
 	// eslint-disable-next-line no-self-compare
@@ -181,7 +184,7 @@ export const isEqualReactSimple = (a: any, b: any): boolean => {
 		}
 
 		if (ctor === Array) {
-			return compareArrays(a, b, isEqual);
+			return compareArrays(a, b, isEqualReactSimple);
 		}
 
 		if (ctor === Date) {
@@ -200,7 +203,7 @@ export const isEqualReactSimple = (a: any, b: any): boolean => {
 			return a.toString() === b.toString();
 		}
 
-		return compareObjectsReact(a, b, isEqual);
+		return compareObjectsReact(a, b, isEqualReactSimple);
 	}
 
 	// eslint-disable-next-line no-self-compare

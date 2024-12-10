@@ -5,6 +5,7 @@ import {
 	compareDates,
 	compareMaps,
 	compareObjects,
+	compareObjectsReact,
 	compareRegexps,
 	compareSets,
 } from './comparators.js';
@@ -114,11 +115,11 @@ describe('comparators', () => {
 		test.each<{name: string; a: Set<any>; b: Set<any>; want: boolean}>([
 			{name: 'empty sets', a: new Set(), b: new Set(), want: true},
 			{name: 'equal sets', a: new Set([1, 2]), b: new Set([1, 2]), want: true},
-			{name: 'wrong order', a: new Set([2, 1]), b: new Set([1, 2]), want: false},
+			{name: 'equal, different order', a: new Set([2, 1]), b: new Set([1, 2]), want: true},
 			{name: 'inequal sizes', a: new Set([1]), b: new Set([1, 2]), want: false},
 			{name: 'inequal elements', a: new Set([1]), b: new Set([2]), want: false},
 		])('$name', ({a, b, want}) => {
-			expect(compareSets(a, b, strictEqual)).toBe(want);
+			expect(compareSets(a, b)).toBe(want);
 		});
 	});
 
@@ -155,7 +156,7 @@ describe('comparators', () => {
 			const a = {a: 1, foo: 'bar', bax: 'qux', $$typeof: true, _owner: 1};
 			const b = {a: 1, bax: 'qux', foo: 'bar', $$typeof: true, _owner: 2};
 
-			expect(compareObjects(a, b, strictEqual, true)).toBe(true);
+			expect(compareObjectsReact(a, b, strictEqual)).toBe(true);
 		});
 	});
 });

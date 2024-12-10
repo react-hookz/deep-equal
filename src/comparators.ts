@@ -6,13 +6,44 @@ export const compareRegexps = (a: RegExp, b: RegExp): boolean =>
 	a.source === b.source && a.flags === b.flags;
 
 export const compareArrays = (a: ArrayLike<any>, b: ArrayLike<any>, equal: EqualFn): boolean => {
-	if (a.length !== b.length) {
+	let l = a.length;
+	if (l !== b.length) {
 		return false;
 	}
 
-	// eslint-disable-next-line unicorn/no-for-loop
-	for (let i = 0; i < a.length; i++) {
-		if (!equal(a[i], b[i])) {
+	// eslint-disable-next-line curly
+	while (l-- && equal(a[l], b[l]));
+
+	return l === -1;
+};
+
+export const compareMaps = (a: Map<any, any>, b: Map<any, any>, equal: EqualFn): boolean => {
+	if (a.size !== b.size) {
+		return false;
+	}
+
+	const it = a.entries();
+	let i: any;
+
+	while (!(i = it.next()).done) {
+		if (!b.has(i.value[0]) || !equal(i.value[1], b.get(i.value[0]))) {
+			return false;
+		}
+	}
+
+	return true;
+};
+
+export const compareSets = (a: Set<any>, b: Set<any>): boolean => {
+	if (a.size !== b.size) {
+		return false;
+	}
+
+	const it = a.values();
+	let i: any;
+
+	while (!(i = it.next()).done) {
+		if (!b.has(i.value)) {
 			return false;
 		}
 	}
@@ -21,69 +52,84 @@ export const compareArrays = (a: ArrayLike<any>, b: ArrayLike<any>, equal: Equal
 };
 
 export const compareDataViews = (a: DataView, b: DataView): boolean => {
-	if (a.byteLength !== b.byteLength) {
+	let l = a.byteLength;
+	if (l !== b.byteLength) {
 		return false;
 	}
 
-	for (let i = 0; i < a.byteLength; i++) {
-		if (a.getInt8(i) !== b.getInt8(i)) {
-			return false;
-		}
-	}
+	// eslint-disable-next-line curly
+	while (l-- && a.getInt8(l) === b.getInt8(l));
 
-	return true;
+	return l === -1;
 };
 
-export const compareMaps = (a: Map<any, any>, b: Map<any, any>, equal: EqualFn): boolean => {
-	if (a.size !== b.size) {
+export const compareArrayBuffers = (a: ArrayLike<any>, b: ArrayLike<any>): boolean => {
+	let l = a.length;
+	if (l !== b.length) {
 		return false;
 	}
 
-	for (const [k, v] of a) {
-		if (!b.has(k) || !equal(v, b.get(k))) {
-			return false;
-		}
-	}
+	// eslint-disable-next-line curly
+	while (l-- && a[l] === b[l]);
 
-	return true;
+	return l === -1;
 };
 
-export const compareSets = (a: Set<any>, b: Set<any>, equal: EqualFn): boolean => {
-	if (a.size !== b.size) {
-		return false;
-	}
-
-	const iterB = b.values();
-
-	for (const i of a) {
-		if (!equal(i, iterB.next().value)) {
-			return false;
-		}
-	}
-
-	return true;
-};
+const {hasOwnProperty} = Object.prototype;
+const oKeys = Object.keys;
 
 export const compareObjects = (
 	a: Record<any, any>,
 	b: Record<any, any>,
 	equal: EqualFn,
-	react = false,
 ): boolean => {
-	const aKeys = Object.keys(a);
+	let i;
+	let length = 0;
 
-	for (const key of aKeys) {
-		if (react && a.$$typeof && (key === '_owner' || key === '__v' || key === '__o')) {
-			// In React and Preact these properties contain circular references
-			// .$$typeof is just reasonable marker of element
+	for (i in a) {
+		if (hasOwnProperty.call(a, i)) {
+			length++;
 
-			continue;
-		}
+			if (!hasOwnProperty.call(b, i)) {
+				return false;
+			}
 
-		if (!Object.hasOwn(b, key) || !equal(a[key], b[key])) {
-			return false;
+			if (!equal(a[i], b[i])) {
+				return false;
+			}
 		}
 	}
 
-	return Object.keys(b).length === aKeys.length;
+	return oKeys(b).length === length;
+};
+
+export const compareObjectsReact = (
+	a: Record<any, any>,
+	b: Record<any, any>,
+	equal: EqualFn,
+): boolean => {
+	let i;
+	let length = 0;
+
+	for (i in a) {
+		if (hasOwnProperty.call(a, i)) {
+			length++;
+			if (a.$$typeof && (i === '_owner' || i === '__v' || i === '__o')) {
+				// In React and Preact these properties contain circular references
+				// .$$typeof is just reasonable marker of element
+
+				continue;
+			}
+
+			if (!hasOwnProperty.call(b, i)) {
+				return false;
+			}
+
+			if (!equal(a[i], b[i])) {
+				return false;
+			}
+		}
+	}
+
+	return oKeys(b).length === length;
 };

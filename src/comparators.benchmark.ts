@@ -172,9 +172,9 @@ describe('ArrayBuffer comparators', () => {
    ✓ Map comparators (4) 5857ms
      name                                   hz     min     max    mean     p75     p99    p995    p999     rme  samples
    · entriesIteration equal       1,155,421.42  0.0007  0.6233  0.0009  0.0008  0.0011  0.0014  0.0027  ±0.34%  1155422
-   · entriesIteration unequal     2,092,715.00  0.0004  0.1124  0.0005  0.0005  0.0007  0.0007  0.0009  ±0.29%  2092715   fastest
+   · entriesIteration inequal     2,092,715.00  0.0004  0.1124  0.0005  0.0005  0.0007  0.0007  0.0009  ±0.29%  2092715   fastest
    · keyGuardedIteration equal    1,016,810.00  0.0008  4.9140  0.0010  0.0010  0.0012  0.0015  0.0040  ±1.00%  1016810   slowest
-   · keyGuardedIteration unequal  1,433,657.86  0.0006  0.1476  0.0007  0.0007  0.0009  0.0010  0.0014  ±0.24%  1433658
+   · keyGuardedIteration inequal  1,433,657.86  0.0006  0.1476  0.0007  0.0007  0.0009  0.0010  0.0014  ±0.24%  1433658
  */
 describe('Map comparators', () => {
 	const strictEqual = (a: any, b: any): boolean => a === b;
@@ -222,14 +222,14 @@ describe('Map comparators', () => {
 	bench('entriesIteration equal', () => {
 		entriesIteration(a, b, strictEqual);
 	}, {time: 1000});
-	bench('entriesIteration unequal', () => {
+	bench('entriesIteration inequal', () => {
 		entriesIteration(a, c, strictEqual);
 	}, {time: 1000});
 
 	bench('keyGuardedIteration equal', () => {
 		keyGuardedIteration(a, b, strictEqual);
 	}, {time: 1000});
-	bench('keyGuardedIteration unequal', () => {
+	bench('keyGuardedIteration inequal', () => {
 		keyGuardedIteration(a, c, strictEqual);
 	}, {time: 1000});
 });
@@ -277,6 +277,8 @@ describe('Set comparators', () => {
 		return true;
 	};
 
+	// this one changes approach to comparing sets, requiring them to have same order,
+	// which is kind of breaking the set concept
 	const doubleIteration = (a: Set<any>, b: Set<any>): boolean => {
 		if (a.size !== b.size) {
 			return false;
