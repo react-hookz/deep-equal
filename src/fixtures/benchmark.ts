@@ -12,7 +12,7 @@ export const simple: BenchmarkSuite[] = [
 					subProp1: 'sub value1',
 					subProp2: {
 						subSubProp1: 'sub sub value1',
-						subSubProp2: [1, 2, {prop2: 1, prop: 2}, 4, 5],
+						subSubProp2: [1, 2, {prop2: 1, prop: 2}, 4, 5, ...Array.from({length: 50}).fill('b')],
 					},
 				},
 				prop5: 1000,
@@ -27,7 +27,7 @@ export const simple: BenchmarkSuite[] = [
 				prop4: {
 					subProp2: {
 						subSubProp1: 'sub sub value1',
-						subSubProp2: [1, 2, {prop2: 1, prop: 2}, 4, 5],
+						subSubProp2: [1, 2, {prop2: 1, prop: 2}, 4, 5, ...Array.from({length: 50}).fill('b')],
 					},
 					subProp1: 'sub value1',
 				},
@@ -35,7 +35,7 @@ export const simple: BenchmarkSuite[] = [
 		],
 	},
 	{
-		name: 'mixed (unequal)',
+		name: 'mixed (inequal)',
 		data: [
 			{
 				prop1: 'value1',
@@ -45,7 +45,7 @@ export const simple: BenchmarkSuite[] = [
 					subProp1: 'sub value1',
 					subProp2: {
 						subSubProp1: 'sub sub value1',
-						subSubProp2: [1, 2, {prop2: 1, prop: 2}, 4, 5],
+						subSubProp2: [1, 2, {prop2: 1, prop: 2}, 4, 5, ...Array.from({length: 50}).fill('b')],
 					},
 				},
 				prop5: 1000,
@@ -60,7 +60,7 @@ export const simple: BenchmarkSuite[] = [
 				prop4: {
 					subProp2: {
 						subSubProp1: 'sub sub value1',
-						subSubProp2: [1, 2, {prop2: 1, prop: 4}, 4, 5],
+						subSubProp2: [1, 2, {prop2: 1, prop: 4}, 4, 5, ...Array.from({length: 50}).fill('b')],
 					},
 					subProp1: 'sub value1',
 				},
@@ -70,15 +70,15 @@ export const simple: BenchmarkSuite[] = [
 	{
 		name: 'arrays (equal)',
 		data: [
-			[1, ['foo', 'bar'], 'a'],
-			[1, ['foo', 'bar'], 'a'],
+			[1, ['foo', 'bar'], 'a', ...Array.from({length: 50}).fill('b')],
+			[1, ['foo', 'bar'], 'a', ...Array.from({length: 50}).fill('b')],
 		],
 	},
 	{
-		name: 'arrays (unequal)',
+		name: 'arrays (inequal)',
 		data: [
-			[1, ['foo', 'bar'], 'a'],
-			[1, ['foo', 'baz'], 'a'],
+			[1, ['foo', 'bar'], 'a', ...Array.from({length: 50}).fill('b')],
+			[1, ['foo', 'baz'], 'a', ...Array.from({length: 50}).fill('b')],
 		],
 	},
 	{
@@ -89,7 +89,7 @@ export const simple: BenchmarkSuite[] = [
 		],
 	},
 	{
-		name: 'objects (unequal)',
+		name: 'objects (inequal)',
 		data: [
 			{a: 1, foo: 'bar', bax: 'qux'},
 			{a: 1, bax: 'qux', foo: 2},
@@ -100,7 +100,7 @@ export const simple: BenchmarkSuite[] = [
 		data: [new Date('2021-01-01'), new Date('2021-01-01')],
 	},
 	{
-		name: 'dates (unequal)',
+		name: 'dates (inequal)',
 		data: [new Date('2021-01-01'), new Date('2021-01-02')],
 	},
 	{
@@ -108,7 +108,7 @@ export const simple: BenchmarkSuite[] = [
 		data: [/[a-c]+/, /[a-c]+/],
 	},
 	{
-		name: 'regexps (unequal)',
+		name: 'regexps (inequal)',
 		data: [/[a-c]+/, /[a-d]+/],
 	},
 ];
@@ -149,7 +149,7 @@ export const complex: BenchmarkSuite[] = [
 		],
 	},
 	{
-		name: 'mixed (unequal)',
+		name: 'mixed (inequal)',
 		data: [
 			{
 				foo: 'value1',
@@ -184,61 +184,74 @@ export const complex: BenchmarkSuite[] = [
 	{
 		name: 'maps (equal)',
 		data: [
-			new Map<any, any>([
-				[1, 'a'],
-				['foo', 'bar'],
-				['baz', 'qux'],
-			]),
-			new Map<any, any>([
-				[1, 'a'],
-				['foo', 'bar'],
-				['baz', 'qux'],
-			]),
+			new Map(Array.from({length: 100}, (_v, idx) => [idx, idx])),
+			new Map(Array.from({length: 100}, (_v, idx) => [idx, idx])),
 		],
 	},
 	{
-		name: 'maps (unequal)',
+		name: 'maps (inequal)',
 		data: [
-			new Map<any, any>([
-				[1, 'a'],
-				['foo', 'bar'],
-				['baz', 'qux'],
-			]),
-			new Map<any, any>([
-				[1, 'a'],
-				['foo', 'bax'],
-				['baz', 'qux'],
-			]),
+			new Map(Array.from({length: 100}, (_v, idx) => [idx, idx])),
+			new Map([
+				...Array.from({length: 49}, (_v, idx) => [idx, idx]),
+				[50, 0],
+				...Array.from({length: 50}, (_v, idx) => [idx + 50, idx]),
+			] as Array<[number, number]>),
 		],
 	},
 	{
 		name: 'sets (equal)',
-		data: [new Set<any>(['foo', 'bar', 'qux']), new Set<any>(['foo', 'bar', 'qux'])],
-	},
-	{
-		name: 'sets (unequal)',
-		data: [new Set<any>(['foo', 'bar', 'qux']), new Set<any>(['foo', 'bax', 'qux'])],
-	},
-	{
-		name: 'data views (equal)',
 		data: [
-			new DataView(new Uint16Array([1, 2, 3]).buffer),
-			new DataView(new Uint16Array([1, 2, 3]).buffer),
+			new Set(Array.from({length: 100}, (_v, idx) => idx)),
+			new Set(Array.from({length: 100}, (_v, idx) => idx)),
 		],
 	},
 	{
-		name: 'data views (unequal)',
+		name: 'sets (inequal)',
 		data: [
-			new DataView(new Uint16Array([1, 2, 3]).buffer),
-			new DataView(new Uint16Array([1, 3, 3]).buffer),
+			new Set(Array.from({length: 100}, (_v, idx) => idx)),
+			new Set([
+				...Array.from({length: 49}, (_v, idx) => idx),
+				1,
+				...Array.from({length: 50}, (_v, idx) => idx + 50),
+			]),
 		],
 	},
+	// not all benchmarked packages are able to compare data views
+	// {
+	// 	name: 'data views (equal)',
+	// 	data: [
+	// 		new DataView(new Uint16Array(Array.from({length: 50}).fill(2) as number[]).buffer),
+	// 		new DataView(new Uint16Array(Array.from({length: 50}).fill(2) as number[]).buffer),
+	// 	],
+	// },
+	// {
+	// 	name: 'data views (inequal)',
+	// 	data: [
+	// 		new DataView(new Uint16Array(Array.from({length: 50}).fill(2) as number[]).buffer),
+	// 		new DataView(new Uint16Array([
+	// 			...Array.from({length: 25}).fill(2) as number[],
+	// 			1,
+	// 			...Array.from({length: 24}).fill(2) as number[],
+	// 		]).buffer),
+	// 	],
+	// },
 	{
 		name: 'array buffers (equal)',
-		data: [new Uint16Array([1, 2, 3]), new Uint16Array([1, 2, 3])],
+		data: [
+			new Uint16Array(Array.from({length: 50}).fill(2) as number[]),
+			new Uint16Array(Array.from({length: 50}).fill(2) as number[]),
+		],
 	},
 	{
-		name: 'array buffers (unequal)',
-		data: [new Uint16Array([1, 2, 3]), new Uint16Array([1, 3, 3])],
+		name: 'array buffers (inequal)',
+		data: [
+			new Uint16Array(Array.from({length: 50}).fill(2) as number[]),
+			new Uint16Array([
+				...Array.from({length: 25}).fill(2) as number[],
+				1,
+				...Array.from({length: 24}).fill(2) as number[],
+			]),
+		],
 	},
 ];

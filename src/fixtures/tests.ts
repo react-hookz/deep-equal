@@ -15,7 +15,40 @@ function func1() {}
 
 function func2() {}
 
-export const simpleTestSuites: TestSuite[] = [
+class MyMap extends Map {}
+
+class MySet extends Set {}
+
+const emptyObject = {};
+
+function map(object: Record<any, any>, Class?: any) {
+	const a = new (Class || Map)();
+	// eslint-disable-next-line guard-for-in
+	for (const key in object) {
+		a.set(key, object[key]);
+	}
+
+	return a;
+}
+
+function myMap(object: Record<any, any>) {
+	return map(object, MyMap);
+}
+
+function set(array: any[], Class?: any) {
+	const a = new (Class || Set)();
+	for (const value of array) {
+		a.add(value);
+	}
+
+	return a;
+}
+
+function mySet(array: any[]) {
+	return set(array, MySet);
+}
+
+export const testCases: TestSuite[] = [
 	{
 		name: 'scalars',
 		tests: [
@@ -421,42 +454,6 @@ export const simpleTestSuites: TestSuite[] = [
 			},
 		],
 	},
-];
-
-class MyMap extends Map {}
-
-class MySet extends Set {}
-
-const emptyObject = {};
-
-function map(object: Record<any, any>, Class?: any) {
-	const a = new (Class || Map)();
-	// eslint-disable-next-line guard-for-in
-	for (const key in object) {
-		a.set(key, object[key]);
-	}
-
-	return a;
-}
-
-function myMap(object: Record<any, any>) {
-	return map(object, MyMap);
-}
-
-function set(array: any[], Class?: any) {
-	const a = new (Class || Set)();
-	for (const value of array) {
-		a.add(value);
-	}
-
-	return a;
-}
-
-function mySet(array: any[]) {
-	return set(array, MySet);
-}
-
-export const complexTestSuites: TestSuite[] = [
 	{
 		name: 'bigint',
 		tests: [
@@ -789,7 +786,36 @@ export const complexTestSuites: TestSuite[] = [
 		],
 	},
 	{
-		name: 'Array buffer',
+		name: 'Typed arrays',
+		tests: [
+			{
+				name: 'two empty arrays',
+				value1: new Uint16Array([]),
+				value2: new Uint16Array([]),
+				equal: true,
+			},
+			{
+				name: 'equal arrays',
+				value1: new Uint16Array([1, 2, 3]),
+				value2: new Uint16Array([1, 2, 3]),
+				equal: true,
+			},
+			{
+				name: 'not equal arrays (different item)',
+				value1: new Uint16Array([1, 2, 3]),
+				value2: new Uint16Array([1, 3, 3]),
+				equal: false,
+			},
+			{
+				name: 'not equal arrays (different length)',
+				value1: new Uint16Array([1, 2, 3]),
+				value2: new Uint16Array([1, 2]),
+				equal: false,
+			},
+		],
+	},
+	{
+		name: 'Array buffers',
 		tests: [
 			{
 				name: 'two empty buffers',
