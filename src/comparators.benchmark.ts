@@ -32,15 +32,13 @@ describe('Array comparators', () => {
 	const strictEqual = (a: any, b: any): boolean => a === b;
 
 	const whileLoop = (a: any[], b: any[], equal: (a: any, b: any) => boolean): boolean => {
-		let l = a.length;
-		if (l !== b.length) {
-			return false;
+		let {length} = a;
+		if (length === b.length) {
+			// eslint-disable-next-line curly
+			while (length-- && equal(a[length], b[length])) ;
 		}
 
-		// eslint-disable-next-line no-empty
-		while (l-- && equal(a[l], b[l])) {}
-
-		return l === -1;
+		return length === -1;
 	};
 
 	const forLoop = (a: any[], b: any[], equal: (a: any, b: any) => boolean) => {
@@ -51,6 +49,20 @@ describe('Array comparators', () => {
 		// eslint-disable-next-line unicorn/no-for-loop
 		for (let i = 0; i < a.length; i++) {
 			if (!equal(a[i], b[i])) {
+				return false;
+			}
+		}
+
+		return true;
+	};
+
+	const forof = (a: any[], b: any[], equal: (a: any, b: any) => boolean) => {
+		if (a.length !== b.length) {
+			return false;
+		}
+
+		for (const [i, element] of a.entries()) {
+			if (!equal(element, b[i])) {
 				return false;
 			}
 		}
@@ -75,6 +87,13 @@ describe('Array comparators', () => {
 	}, {time: 1000});
 	bench('forLoop inequal', () => {
 		forLoop(a, c, strictEqual);
+	}, {time: 1000});
+
+	bench('forof equal', () => {
+		forof(a, b, strictEqual);
+	}, {time: 1000});
+	bench('forof inequal', () => {
+		forof(a, c, strictEqual);
 	}, {time: 1000});
 });
 
@@ -296,9 +315,13 @@ describe('Set comparators', () => {
 		return true;
 	};
 
-	const a = new Set(Array.from({length: 100}).fill(2));
-	const b = new Set(Array.from({length: 100}).fill(2));
-	const c = new Set([...Array.from({length: 49}).fill(2), 1, Array.from({length: 50}).fill(2)]);
+	const a = new Set(Array.from({length: 100}, (_v, idx) => idx));
+	const b = new Set(Array.from({length: 100}, (_v, idx) => idx));
+	const c = new Set([
+		...Array.from({length: 49}, (_v, idx) => idx),
+		1,
+		...Array.from({length: 50}, (_v, idx) => idx + 50),
+	]);
 
 	bench('difference equal', () => {
 		difference(a, b);

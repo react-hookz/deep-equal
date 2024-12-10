@@ -1,6 +1,6 @@
 import {describe, expect, it} from 'vitest';
-import {complexTestSuites, simpleTestSuites, type TestSuite} from './fixtures/tests.js';
-import {isEqual, isEqualReact, isEqualReactSimple, isEqualSimple} from './index.js';
+import {testCases, type TestSuite} from './fixtures/tests.js';
+import {isEqual} from './index.js';
 
 function runSuite(suites: TestSuite[], equalFn: (a: any, b: any) => boolean) {
 	// eslint-disable-next-line vitest/valid-title
@@ -23,13 +23,7 @@ function runSuite(suites: TestSuite[], equalFn: (a: any, b: any) => boolean) {
 	});
 }
 
-runSuite(simpleTestSuites, isEqual);
-runSuite(simpleTestSuites, isEqualSimple);
-runSuite(simpleTestSuites, isEqualReact);
-runSuite(simpleTestSuites, isEqualReactSimple);
-
-runSuite(complexTestSuites, isEqual);
-runSuite(complexTestSuites, isEqualReact);
+runSuite(testCases, isEqual);
 
 it('should not throw on nested react elements with circular references #264', () => {
 	const children1: Record<any, any> = {a: 1, bax: 'qux', foo: 'bar', $$typeof: 'component'};
@@ -41,13 +35,6 @@ it('should not throw on nested react elements with circular references #264', ()
 	const propsNext = {children: children2};
 
 	expect(() => {
-		isEqualReact(propsPrevious, propsNext);
-	}).not.toThrow();
-	expect(() => {
-		isEqualReactSimple(propsPrevious, propsNext);
-	}).not.toThrow();
-
-	expect(() => {
 		isEqual(propsPrevious, propsNext);
-	}).toThrow('Maximum call stack size exceeded');
+	}).not.toThrow();
 });

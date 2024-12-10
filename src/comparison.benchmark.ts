@@ -1,11 +1,9 @@
 import {dequal} from 'dequal';
-import {dequal as dequalLite} from 'dequal/lite';
-import fastDeepEqual from 'fast-deep-equal';
-import fastDeepEqualES6 from 'fast-deep-equal/es6/index.js';
+import fastDeepEqual from 'fast-deep-equal/es6/react.js';
 import reactFastCompare from 'react-fast-compare';
 import {bench, describe} from 'vitest';
 import * as fixtures from './fixtures/benchmark.js';
-import {isEqual, isEqualSimple} from './index.js';
+import {isEqual} from './index.js';
 
 function runBenchmarks(suites: fixtures.BenchmarkSuite[], functions: Record<string, (a: any, b: any) => boolean>) {
 	for (const suite of suites) {
@@ -21,18 +19,16 @@ function runBenchmarks(suites: fixtures.BenchmarkSuite[], functions: Record<stri
 	}
 }
 
-runBenchmarks(fixtures.simple, {
-	'@react-hookz/deep-compare': isEqual,
-	'@react-hookz/deep-compare (simple)': isEqualSimple,
-	'react-fast-compare': reactFastCompare,
-	'fast-deep-equal': fastDeepEqual,
-	dequal,
-	'dequal (lite)': dequalLite,
-});
+// runBenchmarks(fixtures.simple, {
+// 	'@react-hookz/deep-equal': isEqual,
+// 	'react-fast-compare': reactFastCompare,
+// 	'fast-deep-equal': fastDeepEqual,
+// 	dequal,
+// });
 
 runBenchmarks(fixtures.complex, {
-	'@react-hookz/deep-compare': isEqual,
+	'@react-hookz/deep-equal': isEqual,
 	'react-fast-compare': reactFastCompare,
-	'fast-deep-equal': fastDeepEqualES6,
+	'fast-deep-equal': fastDeepEqual,
 	dequal,
 });

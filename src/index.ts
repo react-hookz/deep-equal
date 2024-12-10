@@ -1,15 +1,3 @@
-import {
-	compareArrayBuffers,
-	compareArrays,
-	compareDataViews,
-	compareDates,
-	compareMaps,
-	compareObjects,
-	compareObjectsReact,
-	compareRegexps,
-	compareSets,
-} from './comparators.js';
-
 const {valueOf, toString} = Object.prototype;
 
 // eslint-disable-next-line complexity
@@ -18,192 +6,122 @@ export const isEqual = (a: any, b: any): boolean => {
 		return true;
 	}
 
-	if (a && b && typeof a === 'object' && typeof b === 'object') {
-		const ctor = a.constructor;
-
-		if (ctor !== b.constructor) {
+	if (typeof a === 'object' && typeof b === 'object' && Boolean(a) && Boolean(b)) {
+		if (a.constructor !== b.constructor) {
 			return false;
 		}
 
-		if (ctor === Array) {
-			return compareArrays(a, b, isEqual);
+		if (Array.isArray(a)) {
+			const {length} = a;
+			if (length !== b.length) {
+				return false;
+			}
+
+			for (let i = length; i-- !== 0;) {
+				if (!isEqual(a[i], b[i])) {
+					return false;
+				}
+			}
+
+			return true;
 		}
 
-		if (ctor === Date) {
-			return compareDates(a, b);
+		if (a instanceof RegExp) {
+			return a.source === b.source && a.flags === b.flags;
 		}
 
-		if (ctor === RegExp) {
-			return compareRegexps(a, b);
+		if (a instanceof Date) {
+			return a.getTime() === b.getTime();
 		}
 
-		if (ctor === Map && a instanceof Map && b instanceof Map) {
-			return compareMaps(a, b, isEqual);
+		if (a instanceof Map && b instanceof Map) {
+			if (a.size !== b.size) {
+				return false;
+			}
+
+			for (const entry of a) {
+				if (!b.has(entry[0]) || !isEqual(entry[1], b.get(entry[0]))) {
+					return false;
+				}
+			}
+
+			return true;
 		}
 
-		if (ctor === Set && a instanceof Set && b instanceof Set) {
-			return compareSets(a, b);
+		if (a instanceof Set && b instanceof Set) {
+			if (a.size !== b.size) {
+				return false;
+			}
+
+			for (const value of a) {
+				if (!b.has(value)) {
+					return false;
+				}
+			}
+
+			return true;
 		}
 
-		if (ctor === DataView) {
-			return compareDataViews(a, b);
+		if (a instanceof DataView && b instanceof DataView) {
+			const {byteLength} = a;
+
+			if (byteLength !== b.byteLength) {
+				return false;
+			}
+
+			for (let i = byteLength; i-- !== 0;) {
+				if (a.getUint8(i) !== b.getUint8(i)) {
+					return false;
+				}
+			}
+
+			return true;
 		}
 
-		if (ctor === ArrayBuffer) {
-			return compareArrayBuffers(new Uint8Array(a), new Uint8Array(b));
+		if (a instanceof ArrayBuffer && b instanceof ArrayBuffer) {
+			a = new Uint8Array(a);
+			b = new Uint8Array(b);
 		}
 
-		if (ArrayBuffer.isView(a) && ArrayBuffer.isView(b)) {
-			return compareArrayBuffers(a as any, b as any);
+		if ((ArrayBuffer.isView(a) && ArrayBuffer.isView(b))) {
+			const {length} = a as Uint8Array;
+			if (length !== (b as Uint8Array).length) {
+				return false;
+			}
+
+			for (let i = length; i-- !== 0;) {
+				if ((a as Uint8Array)[i] !== (b as Uint8Array)[i]) {
+					return false;
+				}
+			}
+
+			return true;
 		}
 
-		if (a.valueOf !== valueOf) {
+		if (a.valueOf !== valueOf && typeof a.valueOf === 'function' && typeof b.valueOf === 'function') {
 			return a.valueOf() === b.valueOf();
 		}
 
-		if (a.toString !== toString) {
+		if (a.toString !== toString && typeof a.toString === 'function' && typeof b.toString === 'function') {
 			return a.toString() === b.toString();
 		}
 
-		return compareObjects(a, b, isEqual);
-	}
+		const aKeys = Object.keys(a);
+		let key;
+		for (let l = aKeys.length; l-- !== 0;) {
+			key = aKeys[l];
+			if ((key === '_owner' || key === '__v' || key === '__o') && Object.hasOwn(a, '$$typeof')) {
+				// In React and Preact these properties contain circular references
+				// .$$typeof is just reasonable marker of element
+				continue;
+			}
 
-	// eslint-disable-next-line no-self-compare
-	return a !== a && b !== b;
-};
-
-// eslint-disable-next-line complexity
-export const isEqualReact = (a: any, b: any): boolean => {
-	if (a === b) {
-		return true;
-	}
-
-	if (a && b && typeof a === 'object' && typeof b === 'object') {
-		const ctor = a.constructor;
-
-		if (ctor !== b.constructor) {
-			return false;
+			if (!Object.hasOwn(b, key) || !isEqual(a[key], b[key])) {
+				return false;
+			}
 		}
 
-		if (ctor === Array) {
-			return compareArrays(a, b, isEqualReact);
-		}
-
-		if (ctor === Date) {
-			return compareDates(a, b);
-		}
-
-		if (ctor === RegExp) {
-			return compareRegexps(a, b);
-		}
-
-		if (ctor === Map && a instanceof Map && b instanceof Map) {
-			return compareMaps(a, b, isEqualReact);
-		}
-
-		if (ctor === Set && a instanceof Set && b instanceof Set) {
-			return compareSets(a, b);
-		}
-
-		if (ctor === DataView) {
-			return compareDataViews(a, b);
-		}
-
-		if (ctor === ArrayBuffer) {
-			return compareArrayBuffers(new Uint8Array(a), new Uint8Array(b));
-		}
-
-		if (ArrayBuffer.isView(a) && ArrayBuffer.isView(b)) {
-			return compareArrayBuffers(a as any, b as any);
-		}
-
-		if (a.valueOf !== valueOf) {
-			return a.valueOf() === b.valueOf();
-		}
-
-		if (a.toString !== toString) {
-			return a.toString() === b.toString();
-		}
-
-		return compareObjectsReact(a, b, isEqualReact);
-	}
-
-	// eslint-disable-next-line no-self-compare
-	return a !== a && b !== b;
-};
-
-export const isEqualSimple = (a: any, b: any): boolean => {
-	if (a === b) {
-		return true;
-	}
-
-	if (a && b && typeof a === 'object' && typeof b === 'object') {
-		const ctor = a.constructor;
-
-		if (ctor !== b.constructor) {
-			return false;
-		}
-
-		if (ctor === Array) {
-			return compareArrays(a, b, isEqualSimple);
-		}
-
-		if (ctor === Date) {
-			return compareDates(a, b);
-		}
-
-		if (ctor === RegExp) {
-			return compareRegexps(a, b);
-		}
-
-		if (a.valueOf !== valueOf) {
-			return a.valueOf() === b.valueOf();
-		}
-
-		if (a.toString !== toString) {
-			return a.toString() === b.toString();
-		}
-
-		return compareObjects(a, b, isEqualSimple);
-	}
-
-	// eslint-disable-next-line no-self-compare
-	return a !== a && b !== b;
-};
-
-export const isEqualReactSimple = (a: any, b: any): boolean => {
-	if (a === b) {
-		return true;
-	}
-
-	if (a && b && typeof a === 'object' && typeof b === 'object') {
-		const ctor = a.constructor;
-
-		if (ctor !== b.constructor) {
-			return false;
-		}
-
-		if (ctor === Array) {
-			return compareArrays(a, b, isEqualReactSimple);
-		}
-
-		if (ctor === Date) {
-			return compareDates(a, b);
-		}
-
-		if (ctor === RegExp) {
-			return compareRegexps(a, b);
-		}
-
-		if (a.valueOf !== valueOf) {
-			return a.valueOf() === b.valueOf();
-		}
-
-		if (a.toString !== toString) {
-			return a.toString() === b.toString();
-		}
-
-		return compareObjectsReact(a, b, isEqualReactSimple);
+		return Object.keys(b).length === aKeys.length;
 	}
 
 	// eslint-disable-next-line no-self-compare
