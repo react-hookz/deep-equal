@@ -1,8 +1,10 @@
-import {describe, expect, test} from 'vitest';
+import {describe, expect, it, test} from 'vitest';
 import {
 	compareArrays,
 	compareDataViews,
-	compareDates, compareMaps,
+	compareDates,
+	compareMaps,
+	compareObjects,
 	compareRegexps,
 	compareSets,
 } from './comparators.js';
@@ -124,12 +126,36 @@ describe('comparators', () => {
 		test.each<{name: string; a: Map<any, any>; b: Map<any, any>; want: boolean}>([
 			{name: 'empty maps', a: new Map(), b: new Map(), want: true},
 			{name: 'equal maps', a: new Map([[1, 1], [2, 2]]), b: new Map([[1, 1], [2, 2]]), want: true},
-			{name: 'equal maps, wrong order', a: new Map([[1, 1], [2, 2]]), b: new Map([[2, 2], [1, 1]]), want: true},
+			{
+				name: 'equal maps, wrong order',
+				a: new Map([[1, 1], [2, 2]]),
+				b: new Map([[2, 2], [1, 1]]),
+				want: true,
+			},
 			{name: 'inequal sizes', a: new Map([[1, 2]]), b: new Map([[1, 2], [3, 4]]), want: false},
 			{name: 'inequal keys', a: new Map([[1, 2]]), b: new Map([[2, 2]]), want: false},
 			{name: 'inequal values', a: new Map([[1, 2]]), b: new Map([[1, 3]]), want: false},
 		])('$name', ({a, b, want}) => {
 			expect(compareMaps(a, b, strictEqual)).toBe(want);
+		});
+	});
+
+	describe('compareObjects', () => {
+		test.each<{name: string; a: Record<any, any>; b: Record<any, any>; want: boolean}>([
+			{name: 'empty objects', a: {}, b: {}, want: true},
+			{name: 'equal objects', a: {a: 1, b: 2}, b: {a: 1, b: 2}, want: true},
+			{name: 'equal objects, wrong order', a: {a: 1, b: 2}, b: {b: 2, a: 1}, want: true},
+			{name: 'inequal keys', a: {a: 1, b: 2}, b: {a: 1}, want: false},
+			{name: 'inequal values', a: {a: 1, b: 2}, b: {a: 1, b: 3}, want: false},
+		])('$name', ({a, b, want}) => {
+			expect(compareObjects(a, b, strictEqual)).toBe(want);
+		});
+
+		it('should properly compare react objects', () => {
+			const a = {a: 1, foo: 'bar', bax: 'qux', $$typeof: true, _owner: 1};
+			const b = {a: 1, bax: 'qux', foo: 'bar', $$typeof: true, _owner: 2};
+
+			expect(compareObjects(a, b, strictEqual, true)).toBe(true);
 		});
 	});
 });

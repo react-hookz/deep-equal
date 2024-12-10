@@ -326,3 +326,127 @@ describe('Set comparators', () => {
 		doubleIteration(a, c);
 	}, {time: 1000});
 });
+
+/*
+   ✓ Object comparators (4) 4933ms
+     name                                hz     min     max    mean     p75     p99    p995    p999     rme  samples
+   · prototypeHOP equal          291,830.62  0.0032  0.4844  0.0034  0.0034  0.0037  0.0048  0.0066  ±0.46%   291831
+   · prototypeHOP inequal      1,119,874.34  0.0007  0.6262  0.0009  0.0009  0.0011  0.0014  0.0018  ±0.58%  1120044   fastest
+   · getOwnProperties equal      150,191.14  0.0060  0.3125  0.0067  0.0066  0.0077  0.0098  0.0129  ±0.41%   150192   slowest
+   · getOwnProperties inequal    337,285.73  0.0026  0.3275  0.0030  0.0029  0.0036  0.0050  0.0092  ±0.46%   337286
+ */
+describe('Object comparators', () => {
+	const strictEqual = (a: any, b: any): boolean => a === b;
+
+	const hasOwn = (
+		a: Record<any, any>,
+		b: Record<any, any>,
+		equal: (a: any, b: any) => boolean,
+	): boolean => {
+		let length = 0;
+
+		for (const i in a) {
+			// not own property (inherited)
+			if (!Object.hasOwn(a, i)) {
+				continue;
+			}
+
+			length++;
+
+			if (!Object.hasOwn(b, i) || !equal(a[i], b[i])) {
+				return false;
+			}
+		}
+
+		return Object.keys(b).length === length;
+	};
+
+	const hasOwnWithReact = (
+		a: Record<any, any>,
+		b: Record<any, any>,
+		equal: (a: any, b: any) => boolean,
+		react = false,
+	): boolean => {
+		let length = 0;
+
+		for (const i in a) {
+			if (react && a.$$typeof && (i === '_owner' || i === '__v' || i === '__o')) {
+				// In React and Preact these properties contain circular references
+				// .$$typeof is just reasonable marker of element
+
+				continue;
+			}
+
+			// not own property (inherited)
+			if (!Object.hasOwn(a, i)) {
+				continue;
+			}
+
+			length++;
+
+			if (!Object.hasOwn(b, i) || !equal(a[i], b[i])) {
+				return false;
+			}
+		}
+
+		return Object.keys(b).length === length;
+	};
+
+	const objectKeys = (
+		a: Record<any, any>,
+		b: Record<any, any>,
+		equal: (a: any, b: any) => boolean,
+		react = false,
+	): boolean => {
+		const aKeys = Object.keys(a);
+
+		for (const key of aKeys) {
+			if (react && a.$$typeof && (key === '_owner' || key === '__v' || key === '__o')) {
+				// In React and Preact these properties contain circular references
+				// .$$typeof is just reasonable marker of element
+
+				continue;
+			}
+
+			if (!Object.hasOwn(b, key) || !equal(a[key], b[key])) {
+				return false;
+			}
+		}
+
+		return Object.keys(b).length === aKeys.length;
+	};
+
+	const a: Record<number, number> = {};
+	const b: Record<number, number> = {};
+	const c: Record<number, number> = {};
+
+	for (let i = 0; i < 100; i++) {
+		a[i] = 2;
+		b[i] = 2;
+		c[i] = i % 50;
+	}
+
+	bench('hasOwn equal', () => {
+		hasOwn(a, b, strictEqual);
+	}, {time: 1000});
+	bench('hasOwn inequal', () => {
+		hasOwn(a, c, strictEqual);
+	}, {time: 1000});
+
+	bench('hasOwnWithReact equal', () => {
+		hasOwnWithReact(a, b, strictEqual);
+	}, {time: 1000});
+	bench('hasOwnWithReact equal react enabled', () => {
+		hasOwnWithReact(a, b, strictEqual, true);
+	}, {time: 1000});
+
+	bench('objectKeys equal', () => {
+		objectKeys(a, b, strictEqual);
+	}, {time: 1000});
+	bench('objectKeys equal react enabled', () => {
+		objectKeys(a, b, strictEqual, true);
+	}, {time: 1000});
+	bench('objectKeys inequal', () => {
+		objectKeys(a, c, strictEqual);
+	}, {time: 1000});
+});

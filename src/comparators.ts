@@ -64,61 +64,26 @@ export const compareSets = (a: Set<any>, b: Set<any>, equal: EqualFn): boolean =
 	return true;
 };
 
-const {hasOwnProperty} = Object.prototype;
-const oKeys = Object.keys;
-
 export const compareObjects = (
 	a: Record<any, any>,
 	b: Record<any, any>,
 	equal: EqualFn,
+	react = false,
 ): boolean => {
-	let i;
-	let length = 0;
+	const aKeys = Object.keys(a);
 
-	for (i in a) {
-		if (hasOwnProperty.call(a, i)) {
-			length++;
+	for (const key of aKeys) {
+		if (react && a.$$typeof && (key === '_owner' || key === '__v' || key === '__o')) {
+			// In React and Preact these properties contain circular references
+			// .$$typeof is just reasonable marker of element
 
-			if (!hasOwnProperty.call(b, i)) {
-				return false;
-			}
+			continue;
+		}
 
-			if (!equal(a[i], b[i])) {
-				return false;
-			}
+		if (!Object.hasOwn(b, key) || !equal(a[key], b[key])) {
+			return false;
 		}
 	}
 
-	return oKeys(b).length === length;
-};
-
-export const compareObjectsReact = (
-	a: Record<any, any>,
-	b: Record<any, any>,
-	equal: EqualFn,
-): boolean => {
-	let i;
-	let length = 0;
-
-	for (i in a) {
-		if (hasOwnProperty.call(a, i)) {
-			length++;
-			if (a.$$typeof && (i === '_owner' || i === '__v' || i === '__o')) {
-				// In React and Preact these properties contain circular references
-				// .$$typeof is just reasonable marker of element
-
-				continue;
-			}
-
-			if (!hasOwnProperty.call(b, i)) {
-				return false;
-			}
-
-			if (!equal(a[i], b[i])) {
-				return false;
-			}
-		}
-	}
-
-	return oKeys(b).length === length;
+	return Object.keys(b).length === aKeys.length;
 };
