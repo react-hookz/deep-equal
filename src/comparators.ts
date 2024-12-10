@@ -5,34 +5,47 @@ export const compareDates = (a: Date, b: Date): boolean => a.getTime() === b.get
 export const compareRegexps = (a: RegExp, b: RegExp): boolean =>
 	a.source === b.source && a.flags === b.flags;
 
-export const compareArrays = (a: any[], b: any[], equal: EqualFn): boolean => {
+export const compareArrays = (a: ArrayLike<any>, b: ArrayLike<any>, equal: EqualFn): boolean => {
 	let l = a.length;
-	if (l !== b.length) return false;
+	if (l !== b.length) {
+		return false;
+	}
 
+	// eslint-disable-next-line curly
 	while (l-- && equal(a[l], b[l]));
 
 	return l === -1;
 };
 
 export const compareMaps = (a: Map<any, any>, b: Map<any, any>, equal: EqualFn): boolean => {
-	if (a.size !== b.size) return false;
+	if (a.size !== b.size) {
+		return false;
+	}
+
 	const it = a.entries();
 	let i: any;
 
 	while (!(i = it.next()).done) {
-		if (!b.has(i.value[0]) || !equal(i.value[1], b.get(i.value[0]))) return false;
+		if (!b.has(i.value[0]) || !equal(i.value[1], b.get(i.value[0]))) {
+			return false;
+		}
 	}
 
 	return true;
 };
 
 export const compareSets = (a: Set<any>, b: Set<any>): boolean => {
-	if (a.size !== b.size) return false;
+	if (a.size !== b.size) {
+		return false;
+	}
+
 	const it = a.values();
 	let i: any;
 
 	while (!(i = it.next()).done) {
-		if (!b.has(i.value)) return false;
+		if (!b.has(i.value)) {
+			return false;
+		}
 	}
 
 	return true;
@@ -40,8 +53,11 @@ export const compareSets = (a: Set<any>, b: Set<any>): boolean => {
 
 export const compareDataViews = (a: DataView, b: DataView): boolean => {
 	let l = a.byteLength;
-	if (l !== b.byteLength) return false;
+	if (l !== b.byteLength) {
+		return false;
+	}
 
+	// eslint-disable-next-line curly
 	while (l-- && a.getInt8(l) === b.getInt8(l));
 
 	return l === -1;
@@ -49,20 +65,23 @@ export const compareDataViews = (a: DataView, b: DataView): boolean => {
 
 export const compareArrayBuffers = (a: ArrayLike<any>, b: ArrayLike<any>): boolean => {
 	let l = a.length;
-	if (l !== b.length) return false;
+	if (l !== b.length) {
+		return false;
+	}
 
+	// eslint-disable-next-line curly
 	while (l-- && a[l] === b[l]);
 
 	return l === -1;
 };
 
-const { hasOwnProperty } = Object.prototype;
+const {hasOwnProperty} = Object.prototype;
 const oKeys = Object.keys;
 
 export const compareObjects = (
 	a: Record<any, any>,
 	b: Record<any, any>,
-	equal: EqualFn
+	equal: EqualFn,
 ): boolean => {
 	let i;
 	let length = 0;
@@ -71,9 +90,13 @@ export const compareObjects = (
 		if (hasOwnProperty.call(a, i)) {
 			length++;
 
-			if (!hasOwnProperty.call(b, i)) return false;
+			if (!hasOwnProperty.call(b, i)) {
+				return false;
+			}
 
-			if (!equal(a[i], b[i])) return false;
+			if (!equal(a[i], b[i])) {
+				return false;
+			}
 		}
 	}
 
@@ -83,7 +106,7 @@ export const compareObjects = (
 export const compareObjectsReact = (
 	a: Record<any, any>,
 	b: Record<any, any>,
-	equal: EqualFn
+	equal: EqualFn,
 ): boolean => {
 	let i;
 	let length = 0;
@@ -98,9 +121,13 @@ export const compareObjectsReact = (
 				continue;
 			}
 
-			if (!hasOwnProperty.call(b, i)) return false;
+			if (!hasOwnProperty.call(b, i)) {
+				return false;
+			}
 
-			if (!equal(a[i], b[i])) return false;
+			if (!equal(a[i], b[i])) {
+				return false;
+			}
 		}
 	}
 
