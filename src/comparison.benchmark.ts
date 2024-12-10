@@ -4,7 +4,7 @@ import fastDeepEqual from 'fast-deep-equal';
 import fastDeepEqualES6 from 'fast-deep-equal/es6/index.js';
 import reactFastCompare from 'react-fast-compare';
 import {bench, describe} from 'vitest';
-import * as fixtures from './fixtures/fixtures.benchmark.js';
+import * as fixtures from './fixtures/benchmark.js';
 import {isEqual, isEqualSimple} from './index.js';
 
 function runBenchmarks(suites: fixtures.BenchmarkSuite[], functions: Record<string, (a: any, b: any) => boolean>) {

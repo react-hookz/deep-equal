@@ -1,7 +1,10 @@
-import {defineConfig} from 'vitest/config';
+import {coverageConfigDefaults, defineConfig} from 'vitest/config';
 
 export default defineConfig({
 	test: {
-		dir: './src', // ... Specify options here.
+		dir: './src',
+		coverage: {
+			exclude: ['src/fixtures/**', ...coverageConfigDefaults.exclude],
+		},
 	},
 });

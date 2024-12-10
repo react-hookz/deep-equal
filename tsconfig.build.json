@@ -8,9 +8,9 @@
 		"./src"
 	],
 	"exclude": [
+		"./src/fixtures",
 		"**/*.spec.ts",
 		"**/*.test.ts",
 		"**/*.benchmark.ts",
-		"**/__tests__"
 	]
 }

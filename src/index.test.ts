@@ -1,5 +1,5 @@
 import {describe, expect, it} from 'vitest';
-import {complexTestSuites, simpleTestSuites, type TestSuite} from './fixtures/fixtures.test.js';
+import {complexTestSuites, simpleTestSuites, type TestSuite} from './fixtures/tests.js';
 import {isEqual, isEqualReact, isEqualReactSimple, isEqualSimple} from './index.js';
 
 function runSuite(suites: TestSuite[], equalFn: (a: any, b: any) => boolean) {
