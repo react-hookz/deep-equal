@@ -30,3 +30,24 @@ runSuite(simpleTestSuites, isEqualReactSimple);
 
 runSuite(complexTestSuites, isEqual);
 runSuite(complexTestSuites, isEqualReact);
+
+it('should not throw on nested react elements with circular references #264', () => {
+	const children1: Record<any, any> = {a: 1, bax: 'qux', foo: 'bar', $$typeof: 'component'};
+	children1.__v = children1;
+	const children2: Record<any, any> = {a: 1, bax: 'qux', foo: 'bar', $$typeof: 'component'};
+	children2.__v = children2;
+
+	const propsPrevious = {children: children1};
+	const propsNext = {children: children2};
+
+	expect(() => {
+		isEqualReact(propsPrevious, propsNext);
+	}).not.toThrow();
+	expect(() => {
+		isEqualReactSimple(propsPrevious, propsNext);
+	}).not.toThrow();
+
+	expect(() => {
+		isEqual(propsPrevious, propsNext);
+	}).toThrow('Maximum call stack size exceeded');
+});
