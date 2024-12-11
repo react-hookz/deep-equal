@@ -15,7 +15,7 @@
 
 ---
 
-**The fastest deep comparator with full ES6+ support.**
+**The fastest deep comparator for JS/TS.**
 
 ---
 
@@ -59,7 +59,7 @@ isEqual({ a: 1 }, { a: 1 }); // true
 
 ## Performance ⚡
 
-**Note**: Benchmarks were conducted on specific datasets (available in the `benchmarks` directory). Your results may vary depending on your data and use case. Running benchmarks on your dataset is recommended.
+**Note**: Benchmarks were conducted on specific datasets (available in the `src/fixtures` directory). Your results may vary depending on your data and use case. Running benchmarks on your dataset is recommended.
 
 ### Simple Data (non-ES6+)
 
@@ -85,7 +85,7 @@ isEqual({ a: 1 }, { a: 1 }); // true
 
 ## Run Benchmarks Locally 🛠️
 
-To run the benchmarks on your machine:
+To get more detailed benchmarks for different data types, run the tests directly on your own machine:
 
 1. Clone the repository:
 	```bash
