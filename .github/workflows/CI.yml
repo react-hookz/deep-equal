@@ -71,7 +71,7 @@ jobs:
         run: yarn install --immutable
 
       - name: "Test"
-        run:  yarn test:coverage --run --reporter='github-actions' --reporter='junit' --outputFile='./coverage/test-report.junit.xml --reporter=default'
+        run:  yarn test:coverage --run --reporter='github-actions' --reporter='junit' --outputFile='./coverage/test-report.junit.xml' --reporter=default
 
       - name: "Upload coverage to Codecov"
         uses: codecov/codecov-action@v5
