@@ -60,8 +60,6 @@
   },
   "scripts": {
     "postinstall": "husky",
-    "prepack": "pinst --disable",
-    "postpack": "pinst --enable",
     "build": "yarn build:clean && tsc --version && tsc -p ./tsconfig.build.json",
     "build:clean": "rimraf -g ./dist",
     "lint": "eslint",
