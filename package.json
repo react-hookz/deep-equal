@@ -43,7 +43,6 @@
     "@commitlint/config-conventional": "^19.6.0",
     "@react-hookz/eslint-config": "^4.1.6",
     "@react-hookz/eslint-formatter-gha": "^3.0.2",
-    "@semantic-release/exec": "^6.0.3",
     "@vitest/browser": "^2.1.8",
     "@vitest/coverage-v8": "^2.1.8",
     "commitlint": "^19.6.1",
