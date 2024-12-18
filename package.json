@@ -64,8 +64,8 @@
     "build:clean": "rimraf -g ./dist",
     "lint": "eslint",
     "lint:fix": "eslint --fix",
-    "test": "vitest",
-    "test:coverage": "vitest --coverage",
+    "test": "vitest --run",
+    "test:coverage": "vitest --run --coverage",
     "benchmark": "vitest bench --run"
   },
   "packageManager": "yarn@4.5.3"
