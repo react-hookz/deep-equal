@@ -1271,7 +1271,7 @@ __metadata:
     "@commitlint/cli": "npm:^19.6.1"
     "@commitlint/config-conventional": "npm:^19.6.0"
     "@react-hookz/eslint-config": "npm:^4.1.6"
-    "@react-hookz/eslint-formatter-gha": "npm:^3.0.2"
+    "@react-hookz/eslint-formatter-gha": "npm:^3.0.3"
     "@vitest/browser": "npm:^2.1.8"
     "@vitest/coverage-v8": "npm:^2.1.8"
     commitlint: "npm:^19.6.1"
@@ -1325,12 +1325,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-hookz/eslint-formatter-gha@npm:^3.0.2":
-  version: 3.0.2
-  resolution: "@react-hookz/eslint-formatter-gha@npm:3.0.2"
+"@react-hookz/eslint-formatter-gha@npm:^3.0.3":
+  version: 3.0.3
+  resolution: "@react-hookz/eslint-formatter-gha@npm:3.0.3"
   dependencies:
     "@actions/core": "npm:^1.11.1"
-  checksum: 10c0/148b4427bfb3fb3aba1c5f566b25bb470c4e32b42fe67e21bd0b27681ac489ef414507d61be56d4fd37c3a41b99672dec2d8318f64ebf53f6c6eb8acb4784a26
+  checksum: 10c0/6765a9fdc6e779b1809d97385bccaef8e0395e2ccf39479e39685e667db0e72ad11e4951bf4ff1f649fc8503404c80dbdf555c5475e59fd3a231ebbd9cbb0150
   languageName: node
   linkType: hard
 
