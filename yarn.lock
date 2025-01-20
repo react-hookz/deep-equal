@@ -1287,7 +1287,7 @@ __metadata:
     "@commitlint/config-conventional": "npm:^19.6.0"
     "@react-hookz/eslint-config": "npm:^4.1.6"
     "@react-hookz/eslint-formatter-gha": "npm:^3.0.3"
-    "@vitest/browser": "npm:^3.0.1"
+    "@vitest/browser": "npm:^3.0.2"
     "@vitest/coverage-v8": "npm:^3.0.2"
     commitlint: "npm:^19.6.1"
     dequal: "npm:^2.0.3"
@@ -2138,14 +2138,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vitest/browser@npm:^3.0.1":
-  version: 3.0.1
-  resolution: "@vitest/browser@npm:3.0.1"
+"@vitest/browser@npm:^3.0.2":
+  version: 3.0.2
+  resolution: "@vitest/browser@npm:3.0.2"
   dependencies:
     "@testing-library/dom": "npm:^10.4.0"
     "@testing-library/user-event": "npm:^14.6.0"
-    "@vitest/mocker": "npm:3.0.1"
-    "@vitest/utils": "npm:3.0.1"
+    "@vitest/mocker": "npm:3.0.2"
+    "@vitest/utils": "npm:3.0.2"
     magic-string: "npm:^0.30.17"
     msw: "npm:^2.7.0"
     sirv: "npm:^3.0.0"
@@ -2153,7 +2153,7 @@ __metadata:
     ws: "npm:^8.18.0"
   peerDependencies:
     playwright: "*"
-    vitest: 3.0.1
+    vitest: 3.0.2
     webdriverio: "*"
   peerDependenciesMeta:
     playwright:
@@ -2162,7 +2162,7 @@ __metadata:
       optional: true
     webdriverio:
       optional: true
-  checksum: 10c0/fcd67a221b8d4af5a32f448fe7081780ad5fa1d33be9e104a65218695ec9a0011878162400d57f38fe9f691d1900a789ef43ab69d33be3d0bef649706bf99129
+  checksum: 10c0/07b87f4b1a72f513df38d3817eba14601be30e7955b4d921acad43b17dac25f0c20aea4cd11f1d6bb6e0c5eac3812a335db063a18c7e3f581670d4947b6990bd
   languageName: node
   linkType: hard
 
@@ -2221,25 +2221,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vitest/mocker@npm:3.0.1":
-  version: 3.0.1
-  resolution: "@vitest/mocker@npm:3.0.1"
-  dependencies:
-    "@vitest/spy": "npm:3.0.1"
-    estree-walker: "npm:^3.0.3"
-    magic-string: "npm:^0.30.17"
-  peerDependencies:
-    msw: ^2.4.9
-    vite: ^5.0.0 || ^6.0.0
-  peerDependenciesMeta:
-    msw:
-      optional: true
-    vite:
-      optional: true
-  checksum: 10c0/5ff6e3d9c29da2ad095fc77b0773663fe0e615134139362bada28408dc9ed6a283f82296826a4133a8c9af8e26a4f55af1023967681cde61e5763ec7860f9938
-  languageName: node
-  linkType: hard
-
 "@vitest/mocker@npm:3.0.2":
   version: 3.0.2
   resolution: "@vitest/mocker@npm:3.0.2"
@@ -2256,15 +2237,6 @@ __metadata:
     vite:
       optional: true
   checksum: 10c0/7551aab76879c5bc851f78eee725c01baaadfa103af12a1fa8fb0bb52cc7cf1c3f145eee824eb661af1fb2463138c73969b0b546b1ae20421053eb687b516a5b
-  languageName: node
-  linkType: hard
-
-"@vitest/pretty-format@npm:3.0.1":
-  version: 3.0.1
-  resolution: "@vitest/pretty-format@npm:3.0.1"
-  dependencies:
-    tinyrainbow: "npm:^2.0.0"
-  checksum: 10c0/39b19e1f979303838d61bbe5815721da160ce8f9c04ce23dec1592d92769969026207435d665134a8d304f8c4573c0f6db216c1a6ba070f34e3b6678590c6442
   languageName: node
   linkType: hard
 
@@ -2298,32 +2270,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vitest/spy@npm:3.0.1":
-  version: 3.0.1
-  resolution: "@vitest/spy@npm:3.0.1"
-  dependencies:
-    tinyspy: "npm:^3.0.2"
-  checksum: 10c0/e4772b0646f2e12f6a177b88128710501ad5aae9aca35fd5221b10b41ce29453332ee8525ea2fa5cb2549e1a2bb55ad14b04ff58578d70cad29dfbd5dba86d9c
-  languageName: node
-  linkType: hard
-
 "@vitest/spy@npm:3.0.2":
   version: 3.0.2
   resolution: "@vitest/spy@npm:3.0.2"
   dependencies:
     tinyspy: "npm:^3.0.2"
   checksum: 10c0/3634beda120ac1794ed2aef272da9d776814a67b1c9e087a24c06072374b5abe97c97ee5519fb7b09bc2bcaf6c05dc4499a590a97a2175168a4a3fc5e7b9736e
-  languageName: node
-  linkType: hard
-
-"@vitest/utils@npm:3.0.1":
-  version: 3.0.1
-  resolution: "@vitest/utils@npm:3.0.1"
-  dependencies:
-    "@vitest/pretty-format": "npm:3.0.1"
-    loupe: "npm:^3.1.2"
-    tinyrainbow: "npm:^2.0.0"
-  checksum: 10c0/d90379021390a73bb575459ff617c5c29ac0eff1479dd92bf7df881fe6ac281383283a52e22c1b359b8be210595b81b289860258313b8633ace4f2248af8684a
   languageName: node
   linkType: hard
 
