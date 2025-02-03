@@ -165,6 +165,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@commitlint/cli@npm:^19.7.1":
+  version: 19.7.1
+  resolution: "@commitlint/cli@npm:19.7.1"
+  dependencies:
+    "@commitlint/format": "npm:^19.5.0"
+    "@commitlint/lint": "npm:^19.7.1"
+    "@commitlint/load": "npm:^19.6.1"
+    "@commitlint/read": "npm:^19.5.0"
+    "@commitlint/types": "npm:^19.5.0"
+    tinyexec: "npm:^0.3.0"
+    yargs: "npm:^17.0.0"
+  bin:
+    commitlint: cli.js
+  checksum: 10c0/bb5e4f004f6b16078cdc7e7d6ff1a53762cefc1265af017ccef4ab789d2c562b75fe316ccc1751da6bc1172393f2427926c863298edda2e4d00c8323f2878f5b
+  languageName: node
+  linkType: hard
+
 "@commitlint/config-conventional@npm:^19.7.1":
   version: 19.7.1
   resolution: "@commitlint/config-conventional@npm:19.7.1"
@@ -226,6 +243,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@commitlint/is-ignored@npm:^19.7.1":
+  version: 19.7.1
+  resolution: "@commitlint/is-ignored@npm:19.7.1"
+  dependencies:
+    "@commitlint/types": "npm:^19.5.0"
+    semver: "npm:^7.6.0"
+  checksum: 10c0/8c238002c6c7bb0a50cca2dfc001af2cec2926056e090b840e73c25f8d246ac5d8ff862d51a63900a195479869edca7889fc4c7923ffa2bb85a1475f8c469c43
+  languageName: node
+  linkType: hard
+
 "@commitlint/lint@npm:^19.6.0":
   version: 19.6.0
   resolution: "@commitlint/lint@npm:19.6.0"
@@ -235,6 +262,18 @@ __metadata:
     "@commitlint/rules": "npm:^19.6.0"
     "@commitlint/types": "npm:^19.5.0"
   checksum: 10c0/d7e3c6a43d89b2196362dce5abef6665869844455176103f311cab7a92f6b7be60edec4f03d27b946a65ee2ceb8ff16f5955cba1da6ecdeb9efe9f215b16f47f
+  languageName: node
+  linkType: hard
+
+"@commitlint/lint@npm:^19.7.1":
+  version: 19.7.1
+  resolution: "@commitlint/lint@npm:19.7.1"
+  dependencies:
+    "@commitlint/is-ignored": "npm:^19.7.1"
+    "@commitlint/parse": "npm:^19.5.0"
+    "@commitlint/rules": "npm:^19.6.0"
+    "@commitlint/types": "npm:^19.5.0"
+  checksum: 10c0/578e2a955c5d16e34dade2538966b5a0fed6ba4e81fcfb477ad3a62472467f80d84d0d79ec017aa5e6815ed6c71b246d660d9febb64cabb175e39eee426b2f98
   languageName: node
   linkType: hard
 
@@ -1283,7 +1322,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@react-hookz/deep-equal@workspace:."
   dependencies:
-    "@commitlint/cli": "npm:^19.6.1"
+    "@commitlint/cli": "npm:^19.7.1"
     "@commitlint/config-conventional": "npm:^19.7.1"
     "@react-hookz/eslint-config": "npm:^4.1.6"
     "@react-hookz/eslint-formatter-gha": "npm:^3.0.3"
