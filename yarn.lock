@@ -1328,7 +1328,7 @@ __metadata:
     "@react-hookz/eslint-formatter-gha": "npm:^3.0.3"
     "@vitest/browser": "npm:^3.0.4"
     "@vitest/coverage-v8": "npm:^3.0.4"
-    commitlint: "npm:^19.6.1"
+    commitlint: "npm:^19.7.1"
     dequal: "npm:^2.0.3"
     eslint: "npm:^9.19.0"
     fast-deep-equal: "npm:^3.1.3"
@@ -3140,15 +3140,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"commitlint@npm:^19.6.1":
-  version: 19.6.1
-  resolution: "commitlint@npm:19.6.1"
+"commitlint@npm:^19.7.1":
+  version: 19.7.1
+  resolution: "commitlint@npm:19.7.1"
   dependencies:
-    "@commitlint/cli": "npm:^19.6.1"
+    "@commitlint/cli": "npm:^19.7.1"
     "@commitlint/types": "npm:^19.5.0"
   bin:
     commitlint: cli.js
-  checksum: 10c0/cbb6d1f16bd32fcf40fafedd90b1f85bb2a631ff14028debb4d365629e4a9ba6abb9a4150cdef0abce36fc4cb147891ec856e2529f36a6c0ba56eba52bd5861b
+  checksum: 10c0/27549895b9327404193b95ddba2c71d278aeba1e5ded01c93cefacf6e122f45930f3ff1dac067626eeb66ac9ab001139b7526254661f330236e9b3ccd799ff9d
   languageName: node
   linkType: hard
 
