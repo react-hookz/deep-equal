@@ -578,14 +578,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@eslint/js@npm:9.20.0":
-  version: 9.20.0
-  resolution: "@eslint/js@npm:9.20.0"
-  checksum: 10c0/10e7b5b9e628b5192e8fc6b0ecd27cf48322947e83e999ff60f9f9e44ac8d499138bcb9383cbfa6e51e780d53b4e76ccc2d1753b108b7173b8404fd484d37328
-  languageName: node
-  linkType: hard
-
-"@eslint/js@npm:^9.19.0":
+"@eslint/js@npm:9.20.0, @eslint/js@npm:^9.19.0":
   version: 9.20.0
   resolution: "@eslint/js@npm:9.20.0"
   checksum: 10c0/10e7b5b9e628b5192e8fc6b0ecd27cf48322947e83e999ff60f9f9e44ac8d499138bcb9383cbfa6e51e780d53b4e76ccc2d1753b108b7173b8404fd484d37328
@@ -1295,7 +1288,7 @@ __metadata:
     "@commitlint/cli": "npm:^19.7.1"
     "@commitlint/config-conventional": "npm:^19.7.1"
     "@react-hookz/eslint-config": "npm:^4.1.7"
-    "@react-hookz/eslint-formatter-gha": "npm:^3.0.3"
+    "@react-hookz/eslint-formatter-gha": "npm:^3.0.4"
     "@vitest/browser": "npm:^3.0.5"
     "@vitest/coverage-v8": "npm:^3.0.5"
     commitlint: "npm:^19.7.1"
@@ -1349,12 +1342,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-hookz/eslint-formatter-gha@npm:^3.0.3":
-  version: 3.0.3
-  resolution: "@react-hookz/eslint-formatter-gha@npm:3.0.3"
+"@react-hookz/eslint-formatter-gha@npm:^3.0.4":
+  version: 3.0.4
+  resolution: "@react-hookz/eslint-formatter-gha@npm:3.0.4"
   dependencies:
     "@actions/core": "npm:^1.11.1"
-  checksum: 10c0/6765a9fdc6e779b1809d97385bccaef8e0395e2ccf39479e39685e667db0e72ad11e4951bf4ff1f649fc8503404c80dbdf555c5475e59fd3a231ebbd9cbb0150
+  checksum: 10c0/b07933a20e373c9c90778b51707b3b41e7887e04270193933c2d32a8e07d585cb0ddf4725fb5125e5dbea66e64ab043763ab8de3dcc74817df42b640131a5c26
   languageName: node
   linkType: hard
 
