@@ -1462,7 +1462,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@react-hookz/deep-equal@workspace:."
   dependencies:
-    "@commitlint/cli": "npm:^19.7.1"
+    "@commitlint/cli": "npm:^19.8.0"
     "@commitlint/config-conventional": "npm:^19.7.1"
     "@react-hookz/eslint-config": "npm:^4.1.7"
     "@react-hookz/eslint-formatter-gha": "npm:^3.0.4"
