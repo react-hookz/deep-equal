@@ -1,3 +1,7 @@
+> [!CAUTION]
+> __PACKAGE IS DEPRECATED AND WILL BE DETED SOON__  
+> USE [@ver0/deep-equal](https://github.com/ver0-project/deep-equal) instead
+
 <div align="center">
 
 # @react-hookz/deep-equal
